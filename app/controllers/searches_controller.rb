@@ -7,8 +7,13 @@ class SearchesController < ApplicationController
     
     
     def new
+        @search=[{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'},
+            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'},
+            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'}]
     end
     
+    def show
+    end
     
     def index
         @search=[{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'},
