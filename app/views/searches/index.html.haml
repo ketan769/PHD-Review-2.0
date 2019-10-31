@@ -2,20 +2,18 @@
 <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css" integrity="" crossorigin="anonymous">
 %h2 List
 
-%table.table-striped.col-md-10#movies
+%table{:border => 1}
   %thead
     %tr
       %th UIN
       %th First Name
       %th Last Name
+      %th Review Year
 
   %tbody
     - @search.each do |det|
       %tr
-        %td= link_to "#{det[:uin]}" 
-        %td= det[:first_name]
-        %td= det[:last_name]
-        
-
-        
-
+        %td= link_to "#{det.uin}" 
+        %td= det.first_name
+        %td= det.last_name
+        %td= det.review_year
