@@ -6,6 +6,9 @@ class SearchesController < ApplicationController
     end
 
     def new
+        @search=[{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'},
+            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'},
+            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'}]
     end
 
     def index
