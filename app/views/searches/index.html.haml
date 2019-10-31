@@ -1,0 +1,19 @@
+%h2 List
+
+%table.table-striped.col-md-10#movies
+  %thead
+    %tr
+      %th UIN
+      %th First Name
+      %th Last Name
+
+  %tbody
+    - @search.each do |det|
+      %tr
+        %td= link_to "#{det[:uin]}" 
+        %td= det[:first_name]
+        %td= det[:last_name]
+        
+
+        
+
