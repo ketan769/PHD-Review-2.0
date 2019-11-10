@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  review_id: 1
+  uin: 1
+  year: 1
+  review: 
+  review_score: 1
+  notes: MyString
+  comments_for_faculty: MyString
+  comments_for_student: MyString
+  review_open_date: 2019-11-09 23:59:56
+  review_official_student_deadline: 2019-11-09 23:59:56
+  review_student_input_date: 2019-11-09 23:59:56
+  review_faculty_input_date: 2019-11-09 23:59:56
+  ip_open_date: 2019-11-09 23:59:56
+  ip_official_student_deadline: 2019-11-09 23:59:56
+  ip_student_input_date: 2019-11-09 23:59:56
+  ip_faculty_input_date: 2019-11-09 23:59:56
+  ip_release_date: 2019-11-09 23:59:56
+  dp_open_date: 2019-11-09 23:59:56
+  dp_official_student_deadline: 2019-11-09 23:59:56
+  dp_student_input_date: 2019-11-09 23:59:56
+  dp_faculty_input_date: 2019-11-09 23:59:56
+  dp_release_date: 2019-11-09 23:59:56
+
+two:
+  review_id: 1
+  uin: 1
+  year: 1
+  review: 
+  review_score: 1
+  notes: MyString
+  comments_for_faculty: MyString
+  comments_for_student: MyString
+  review_open_date: 2019-11-09 23:59:56
+  review_official_student_deadline: 2019-11-09 23:59:56
+  review_student_input_date: 2019-11-09 23:59:56
+  review_faculty_input_date: 2019-11-09 23:59:56
+  ip_open_date: 2019-11-09 23:59:56
+  ip_official_student_deadline: 2019-11-09 23:59:56
+  ip_student_input_date: 2019-11-09 23:59:56
+  ip_faculty_input_date: 2019-11-09 23:59:56
+  ip_release_date: 2019-11-09 23:59:56
+  dp_open_date: 2019-11-09 23:59:56
+  dp_official_student_deadline: 2019-11-09 23:59:56
+  dp_student_input_date: 2019-11-09 23:59:56
+  dp_faculty_input_date: 2019-11-09 23:59:56
+  dp_release_date: 2019-11-09 23:59:56

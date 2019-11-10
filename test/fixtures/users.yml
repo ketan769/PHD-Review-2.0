@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uin: 1
+  first_name: MyString
+  last_name: MyString
+  gender: MyString
+  major: MyString
+  degree: MyString
+
+two:
+  uin: 1
+  first_name: MyString
+  last_name: MyString
+  gender: MyString
+  major: MyString
+  degree: MyString
