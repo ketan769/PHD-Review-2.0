@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+   resources :password_resets
+
    resources :auths, only: [:new, :create]
    get 'login', to: 'sessions#new'
    post 'login', to: 'sessions#create'
