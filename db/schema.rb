@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191030063122) do
+ActiveRecord::Schema.define(version: 20191109235956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "review_id"
+    t.integer  "uin"
+    t.integer  "year"
+    t.integer  "review_score"
+    t.string   "notes"
+    t.string   "comments_for_faculty"
+    t.string   "comments_for_student"
+    t.datetime "review_open_date"
+    t.datetime "review_official_student_deadline"
+    t.datetime "review_student_input_date"
+    t.datetime "review_faculty_input_date"
+    t.datetime "review_release_date"
+    t.datetime "ip_open_date"
+    t.datetime "ip_official_student_deadline"
+    t.datetime "ip_student_input_date"
+    t.datetime "ip_faculty_input_date"
+    t.datetime "ip_release_date"
+    t.datetime "dp_open_date"
+    t.datetime "dp_official_student_deadline"
+    t.datetime "dp_student_input_date"
+    t.datetime "dp_faculty_input_date"
+    t.datetime "dp_release_date"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
 
   create_table "searches", force: :cascade do |t|
     t.decimal  "uin"
@@ -22,6 +49,24 @@ ActiveRecord::Schema.define(version: 20191030063122) do
     t.decimal  "review_year"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer  "uin"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "gender"
+    t.string   "major"
+    t.string   "degree"
+    t.string   "start_semester"
+    t.decimal  "cumul_gpa"
+    t.string   "degree_plan_date"
+    t.string   "qual_exam_date"
+    t.string   "qual_exam_result"
+    t.string   "prelim_date"
+    t.string   "final_exam_defence_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
