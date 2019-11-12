@@ -24,10 +24,9 @@ class SearchesController < ApplicationController
         # else
         #     @search = Search.all
         # end
-        @search=[{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'},
-            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'},
-            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'}]
-        logger.debug(@search.inspect)    
+        @searches=[{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'Sethi', :review_year => '2018'},
+            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'Sethi', :review_year => '2018' },
+            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'Sethi', :review_year => '2018'}]
     end
 end
 
