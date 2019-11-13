@@ -19,7 +19,9 @@ class ReviewsController < ApplicationController
     end
     
     def edit
+      # id = "123"
       @review = Review.find params[:id]
+      # @review = Review.find id
     end
     
     def update

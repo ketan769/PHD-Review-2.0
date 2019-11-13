@@ -1,25 +1,87 @@
-<p id="notice"><%= notice %></p>
+<html>
+    
+<link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css" integrity="" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">PHD REVIEW SYSTEM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+<div class="container">
 
-<h1>Reviews</h1>
+<div class="page-header">
+<h1>STUDENT REVIEW</h1>
+</div>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th scope="col">Review Year</th>
+      <th scope="col">Open Date</th>
+      <th scope="col">Input Deadline</th>
+      <th scope="col">Review Deadline</th>
+      <th scope="col">Review Release Date</th>
+      <th scope="col">Reviewer</th>
+      <th scope="col">Comments for Students</th>
+      <th scope="col">Comments for Faculty</th>
+      <th scope="col">Notes</th>
+      <th scope="col">Documents</th>
+      <th scope="col">Edit</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @reviews.each do |review| %>
-      <tr>
-        <td><%= link_to 'Show', review %></td>
-        <td><%= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <tr class="table-primary">
+      <th scope="row">Primary</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td><button type="button" class="btn btn-primary" onclick="openEditForm()">Edit</button></td>
+    </tr>
   </tbody>
-</table>
+</table> 
 
-<br>
+<script>
+  function openEditForm() {
+    var x = document.getElementById("editForm");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+</script>
 
-<%= link_to 'New Review', new_review_path %>
+<div class="jumbotron" id="editForm" style="display:none">
+  <h1 class="display-5">Input Student Details</h1>
+  
+  <form action=edit_review>
+    
+  <div class="form-group">
+    <label for="review_year">Review Score</label>
+    <select class="custom-select" id="review_score">
+      <option selected="">Select review score</option>
+      <option value="1">Not rated - 0(X)</option>
+      <option value="2">Unsatisfactory - 1(U)</option>
+      <option value="3">Needs improvement - 2(N)</option>
+      <option value="4">Satisfactory - 3(S)</option>
+    </select>
+  </div>
+ 
+    <div class="form-group">
+      <label for="Comments for Student">Comments for Student</label>
+      <textarea class="form-control" id="exampleTextarea" rows="3" spellcheck="false"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="Comments for Faculty">Comments for Student</label>
+      <textarea class="form-control" id="exampleTextarea" rows="3" spellcheck="false"></textarea>
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
