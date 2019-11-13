@@ -2,9 +2,6 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 searches= [{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi',:review_year =>2018},
           {:uin =>3270101101, :first_name => 'ABC', :last_name=> 'DEF',:review_year =>2019},
           {:uin =>3270181291, :first_name => 'GHI', :last_name=> 'JKL',:review_year =>2018},
@@ -13,4 +10,10 @@ searches= [{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi',:rev
             
 searches.each do |ser|
   Search.create!(ser)
+end
+
+reviews= [{:review_id =>7891, :uin =>3270101101, :year =>2019,:review_score =>IMP,:comments_for_faculty =>"Great"},
+          {:review_id =>7928, :uin =>327005544, :year =>2019,:review_score =>Sat,:comments_for_faculty =>"Bad"}]
+reviews.each do |rev|
+  Review.create!(rev)
 end
