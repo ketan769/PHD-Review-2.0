@@ -1,10 +1,11 @@
 class Search < ActiveRecord::Base
  has_many :reviews 
+ self.primary_key=:uin
+
  def self.search_func (search)
-   Search.joins(:reviews)
    if search[:uin]!=""
-     
-     temp=Search.where(:uin => search[:uin])
+     temp=Search.joins(:reviews).where(:uin => search[:uin]).distinct
+     # byebug
    else
      temp=Search
    end
@@ -17,7 +18,7 @@ class Search < ActiveRecord::Base
    if search[:review_year]!=nil 
     temp=temp.where(:review_year => search[:review_year])
    end
-  return temp 
+  return temp
  end
 end
 

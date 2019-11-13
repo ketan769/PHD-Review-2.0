@@ -1,5 +1,6 @@
 class SearchesController < ApplicationController
     
+   
     def search_params
         params.require(:search).permit(:uin, :first_name, :last_name, :review_year)
         # logger.debug(params.inspect)
@@ -11,15 +12,12 @@ class SearchesController < ApplicationController
     
     
     def index
-<<<<<<< HEAD
-        logger.debug(params.inspect)    
-        @search=search_func(params)
-        # @search=[{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'},
-        #     {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'},
-        #     {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'}]
-        # logger.debug(@search.inspect)    
-=======
-        
+            
+        # @search=Search.search_func(params)
+        @temp=Review.rev_func(params)
+        # byebug
+        # @search=@search.first.reviews
+        # logger.debug(@search.inspect)  
         # if params[:uin]!=""
         #     @search = Search.where(:uin => params[:uin])
         # elsif params[:first_name]!=""
@@ -31,10 +29,11 @@ class SearchesController < ApplicationController
         # else
         #     @search = Search.all
         # end
-        @searches=[{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'Sethi', :review_year => '2018'},
-            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'Sethi', :review_year => '2018' },
-            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'Sethi', :review_year => '2018'}]
->>>>>>> 7b80666b07a1f57e565e7f8acc74e30ec608b11f
+        # @search=[{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'},
+        #     {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'},
+        #     {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi'}]
+        # logger.debug(@search.inspect)
+        return @temp    
     end
 end
 
