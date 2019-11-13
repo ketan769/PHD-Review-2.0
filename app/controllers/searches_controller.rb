@@ -13,18 +13,20 @@ class SearchesController < ApplicationController
     
     def index
         
-        if params[:uin]!=""
-            @search = Search.where(:uin => params[:uin])
-        elsif params[:first_name]!=""
-            @search = Search.where(:first_name => params[:first_name])
-        elsif params[:last_name]!=""
-            @search = Search.where(:last_name => params[:last_name])
-        elsif params[:review_year]!=""
-            @search = Search.where(:review_year=> params[:review_year])
-        else
-            @search = Search.all
-        end
-        
+        # if params[:uin]!=""
+        #     @search = Search.where(:uin => params[:uin])
+        # elsif params[:first_name]!=""
+        #     @search = Search.where(:first_name => params[:first_name])
+        # elsif params[:last_name]!=""
+        #     @search = Search.where(:last_name => params[:last_name])
+        # elsif params[:review_year]!=""
+        #     @search = Search.where(:review_year=> params[:review_year])
+        # else
+        #     @search = Search.all
+        # end
+        @searches=[{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'Sethi', :review_year => '2018'},
+            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'Sethi', :review_year => '2018' },
+            {:uin => 327005544, :first_name => 'Ketan', :last_name=> 'Sethi', :review_year => '2018'}]
     end
 end
 
