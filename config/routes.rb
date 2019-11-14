@@ -6,6 +6,8 @@ Rails.application.routes.draw do
    post 'login', to: 'sessions#create'
    get 'welcome', to: 'sessions#welcome'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-   resources :searches
-   root "sessions#new"
+  resources :searches
+  root "searches#new"
+  resources :reviews
+
 end
