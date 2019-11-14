@@ -1,10 +1,8 @@
 
 <html>
-
 <div class="page-header">
 <h1>Searched Items</h1>
 </div>
-
 <head>
       <title>HTML Table Background</title>
    </head>
@@ -43,37 +41,37 @@
             <th>Final Exam Defense Date</th>
             <th>Decision Letter</th>
          </tr>
-         <% @searches.map do |search| %>
+         <% @temp.each do |rev| %>
          <tr>
             <td><input type="checkbox" name="chk[]"/></td>
-            <td><%= search[:uin] %></td>
-            <td><%= search[:first_name] %></td>
-            <td><%= search[:last_name] %></td>
-            <td><%= search[:review_year] %></td>
-            <td><%= search[:review_official_student_deadline] %></td>
-            <td><%= search[:review_student_input_date] %></td>
-            <td><%= search[:review_faculty_input_date] %></td>
-            <td><%= search[:review_release_date] %></td>
-            <td><%= search[:ip_open_date] %></td>
-            <td><%= search[:ip_official_student_deadline] %></td>
-            <td><%= search[:ip_student_input_date] %></td>
-            <td><%= search[:ip_faculty_input_date] %></td>
-            <td><%= search[:ip_release_date] %></td>
-            <td><%= search[:dp_open_date] %></td>
-            <td><%= search[:dp_official_student_deadline] %></td>
-            <td><%= search[:dp_student_input_date] %></td>
-            <td><%= search[:dp_faculty_input_date] %></td>
-            <td><%= search[:dp_release_date] %></td>
-            <td><button>View</button></td>
-            <td><%= search[:degree] %></td>
-            <td><%= search[:start_semester] %></td>
-            <td><%= search[:cumul_gpa] %>/td>
-            <td><%= search[:degree_plan_date] %></td>
-            <td><%= search[:qual_exam_date] %></td>
-            <td><%= search[:qual_exam_result] %></td>
-            <td><%= search[:prelim_date] %></td>
-            <td><%= search[:proposal_date] %></td>
-            <td><%= search[:final_exam_defence_date] %></td>
+            <td><%=link_to(rev.user[:uin],search_path(rev,:uin =>rev.user[:uin],:review_year=>rev[:year])) %></td>
+            <td><%= rev.user[:first_name]%></td>
+            <td><%= rev.user[:last_name] %></td>
+            <td><%= rev[:year] %></td>
+            <td><%= rev[:review_official_student_deadline]%></td>
+            <td><%= rev[:review_student_input_date] %></td>
+            <td><%= rev[:review_faculty_input_date] %></td>
+            <td><%= rev[:review_release_date] %></td>
+            <td><%= rev[:ip_open_date] %></td>
+            <td><%= rev[:ip_official_student_deadline] %></td>
+            <td><%= rev[:ip_student_input_date] %></td>
+            <td><%= rev[:ip_faculty_input_date] %></td>
+            <td><%= rev[:ip_release_date] %></td>
+            <td><%= rev[:dp_open_date] %></td>
+            <td><%= rev[:dp_official_student_deadline] %></td>
+            <td><%= rev[:dp_student_input_date] %></td>
+            <td><%= rev[:dp_faculty_input_date] %></td>
+            <td><%= rev[:dp_release_date] %></td>
+            <td><%= link_to '<button type="button">view</button>'.html_safe, reviews_path(rev) %></td>
+            <td><%= rev.user[:degree] %></td>
+            <td><%= rev.user[:start_semester] %></td>
+            <td><%= rev.user[:cumul_gpa]%></td>
+            <td><%= rev.user[:degree_plan_date] %></td>
+            <td><%= rev.user[:qual_exam_date] %></td>
+            <td><%= rev.user[:qual_exam_result] %></td>
+            <td><%= rev.user[:prelim_date] %></td>
+            <td><%= rev.user[:proposal_date] %></td>
+            <td><%= rev.user[:final_exam_defence_date] %></td>
             <td><input type="file" name="fileupload" value="fileupload" id="fileupload"> <label for="fileupload"> Select a file to upload</label> <input type="submit" value="submit"></td>
          </tr>
          <%end %>

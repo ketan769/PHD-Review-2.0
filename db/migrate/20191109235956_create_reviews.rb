@@ -3,8 +3,8 @@ class CreateReviews < ActiveRecord::Migration[5.0]
     create_table :reviews do |t|
       t.belongs_to :user, index: true
       t.integer :review_id
-      t.integer :uin
       t.string :reviewer
+      t.integer :user_id
       t.integer :year
       t.integer :review_score
       t.string :notes
