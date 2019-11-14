@@ -14,3 +14,9 @@ searches= [{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi',:rev
 searches.each do |ser|
   Search.create!(ser)
 end
+
+auths= [{:username => 123, :password=> 'abc', :email=> 'dola16shaw@gmail.com',:role =>2018},
+          {:username =>327, :password=> 'def', :email=> 'DEF',:role =>2019}]
+auths.each do |ser|
+Auth.create!(ser)
+end
