@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20191111000252) do
-# ActiveRecord::Schema.define(version: 20191109235956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +26,7 @@ ActiveRecord::Schema.define(version: 20191111000252) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "review_id"
-    t.integer  "search_id"
+    t.integer  "user_id"
     t.integer  "year"
     t.integer  "review_score"
     t.string   "notes"
@@ -60,15 +59,23 @@ ActiveRecord::Schema.define(version: 20191111000252) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: false, force: :cascade do |t|
     t.integer  "uin"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "gender"
     t.string   "major"
     t.string   "degree"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "review_year"
+    t.integer  "cumul_gpa"
+    t.datetime "degree_plan_date"
+    t.datetime "qual_exam_date"
+    t.string   "qual_exam_result"
+    t.datetime "prelim_date"
+    t.datetime "proposal_date"
+    t.datetime "final_exam_defence_date"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
 end

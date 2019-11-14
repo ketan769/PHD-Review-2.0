@@ -1,3 +1,4 @@
 class User < ApplicationRecord
-    has_many :searches
+    has_many :review
+    self.primary_key=:uin
 end

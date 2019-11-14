@@ -1,10 +1,8 @@
 
 <html>
-
 <div class="page-header">
 <h1>Searched Items</h1>
 </div>
-
 <head>
       <title>HTML Table Background</title>
    </head>
@@ -46,11 +44,11 @@
          <% @temp.each do |rev| %>
          <tr>
             <td><input type="checkbox" name="chk[]"/></td>
-            <td><%= rev.search[:uin] %></td>
-            <td><%= rev.search[:first_name]%></td>
-            <td><%= rev.search[:last_name] %></td>
-            <td><%= rev.search[:review_year] %></td>
-            <td><%= rev[:review_score]%></td>
+            <td><%=link_to(rev.user[:uin],search_path(rev,:uin =>rev.user[:uin],:review_year=>rev[:year])) %></td>
+            <td><%= rev.user[:first_name]%></td>
+            <td><%= rev.user[:last_name] %></td>
+            <td><%= rev[:year] %></td>
+            <td><%= rev[:review_official_student_deadline]%></td>
             <td><%= rev[:review_student_input_date] %></td>
             <td><%= rev[:review_faculty_input_date] %></td>
             <td><%= rev[:review_release_date] %></td>
@@ -64,16 +62,16 @@
             <td><%= rev[:dp_student_input_date] %></td>
             <td><%= rev[:dp_faculty_input_date] %></td>
             <td><%= rev[:dp_release_date] %></td>
-            <td><button>View</button></td>
-            <td><%= rev[:degree] %></td>
-            <td><%= rev[:start_semester] %></td>
-            <td><%= rev[:cumul_gpa] %>/td>
-            <td><%= rev[:degree_plan_date] %></td>
-            <td><%= rev[:qual_exam_date] %></td>
-            <td><%= rev[:qual_exam_result] %></td>
-            <td><%= rev[:prelim_date] %></td>
-            <td><%= rev[:proposal_date] %></td>
-            <td><%= rev[:final_exam_defence_date] %></td>
+            <td><%= link_to '<button type="button">view</button>'.html_safe, reviews_path(rev.user[:uin]) %></td>
+            <td><%= rev.user[:degree] %></td>
+            <td><%= rev.user[:start_semester] %></td>
+            <td><%= rev.user[:cumul_gpa]%></td>
+            <td><%= rev.user[:degree_plan_date] %></td>
+            <td><%= rev.user[:qual_exam_date] %></td>
+            <td><%= rev.user[:qual_exam_result] %></td>
+            <td><%= rev.user[:prelim_date] %></td>
+            <td><%= rev.user[:proposal_date] %></td>
+            <td><%= rev.user[:final_exam_defence_date] %></td>
             <td><input type="file" name="fileupload" value="fileupload" id="fileupload"> <label for="fileupload"> Select a file to upload</label> <input type="submit" value="submit"></td>
          </tr>
          <%end %>
