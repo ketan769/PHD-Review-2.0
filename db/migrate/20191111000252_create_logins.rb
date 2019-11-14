@@ -5,7 +5,6 @@ class CreateLogins < ActiveRecord::Migration[5.0]
       t.string :password
       t.string :email
       t.string :role
-
       t.timestamps
     end
   end

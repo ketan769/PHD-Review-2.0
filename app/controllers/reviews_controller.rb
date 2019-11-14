@@ -1,4 +1,8 @@
 class ReviewsController < ApplicationController
+  
+    def review_params
+        params.require(:review).permit(:review_score, :comments_for_student, :comments_for_student, :notes)
+    end
     def index
         @reviews = Review.all
     end
@@ -38,4 +42,7 @@ class ReviewsController < ApplicationController
       redirect_to reviews_path
     end
       
+    def set_user
+      @user = User.find(params[:uin])
+    end
 end

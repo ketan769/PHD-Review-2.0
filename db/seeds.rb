@@ -10,6 +10,12 @@ searches= [{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi',:rev
           {:uin =>3270181291, :first_name => 'GHI', :last_name=> 'JKL',:review_year =>2018},
           {:uin =>3270101101, :first_name => 'MNO', :last_name=> 'PQR',:review_year =>2018},
           {:uin =>3270181291, :first_name => 'STU', :last_name=> 'VWX',:review_year =>2019}]
+          
+reviews= [{:uin => 3270181291, :reviewer => "XYZ", :year => 2020 }]
+
+reviews.each do |review|
+  Review.create!(review)
+end
             
 searches.each do |ser|
   Search.create!(ser)
