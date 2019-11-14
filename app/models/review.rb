@@ -1,7 +1,5 @@
 class Review < ApplicationRecord
     belongs_to :user
-<<<<<<< HEAD
-=======
     
   def self.rev_func (revs)
      if revs!=""
@@ -13,5 +11,4 @@ class Review < ApplicationRecord
     #  byebug
      return @rev
   end
->>>>>>> master
 end
