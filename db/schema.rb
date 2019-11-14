@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20191112214059) do
-
-ActiveRecord::Schema.define(version: 20191111000252) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +25,7 @@ ActiveRecord::Schema.define(version: 20191111000252) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
   end
+
   create_table "logins", force: :cascade do |t|
     t.integer  "username"
     t.string   "password"
@@ -36,7 +33,6 @@ ActiveRecord::Schema.define(version: 20191111000252) do
     t.string   "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -51,7 +47,6 @@ ActiveRecord::Schema.define(version: 20191111000252) do
     t.datetime "review_official_student_deadline"
     t.datetime "review_student_input_date"
     t.datetime "review_faculty_input_date"
-    t.datetime "review_release_date"
     t.datetime "ip_open_date"
     t.datetime "ip_official_student_deadline"
     t.datetime "ip_student_input_date"
@@ -92,17 +87,6 @@ ActiveRecord::Schema.define(version: 20191111000252) do
     t.datetime "final_exam_defence_date"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-
-    t.string   "start_semester"
-    t.decimal  "cumul_gpa"
-    t.string   "degree_plan_date"
-    t.string   "qual_exam_date"
-    t.string   "qual_exam_result"
-    t.string   "prelim_date"
-    t.string   "final_exam_defence_date"
-
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
-end
+
 end

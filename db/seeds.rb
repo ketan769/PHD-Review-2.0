@@ -16,11 +16,8 @@ reviews.each do |rev|
   Review.create!(rev)
 end
 
-<<<<<<< HEAD
-=======
 auths= [{:username => 123, :password=> 'abc', :email=> 'dola16shaw@gmail.com',:role =>2018},
           {:username =>327, :password=> 'def', :email=> 'DEF',:role =>2019}]
 auths.each do |ser|
 Auth.create!(ser)
 end
->>>>>>> 1e02a7e417071b18dca9ae2abd4f059c01b1d5f5
