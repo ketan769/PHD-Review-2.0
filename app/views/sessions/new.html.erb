@@ -1,0 +1,10 @@
+<p id=”alert”><%= alert %></p>
+<h1>Login</h1>
+   <%= form_tag '/login' do %>
+   <%= label_tag :username%>
+   <%= number_field_tag :username %>
+   <%= label_tag :password%>
+   <%= password_field_tag :password%>
+   <%= submit_tag "Login"%>
+<p><%= link_to 'Forgot password?', '/password_resets/new' %></p>
+<%end%>

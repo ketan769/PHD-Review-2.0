@@ -1,0 +1,82 @@
+
+<html>
+
+<div class="page-header">
+<h1>Searched Items</h1>
+</div>
+
+<head>
+      <title>HTML Table Background</title>
+   </head>
+	
+   <body>
+      <table id='Mytable' border = "1" bordercolor = "green" width=100% style='font-size:70%' > 
+         <tr>
+            <th></th>
+            <th>UIN</th>
+            <th>First-Name</th>
+            <th>Last-Name</th>
+            <th>Year</th>
+            <th>Review Official Student Deadline</th>
+            <th>Review Student Input Date</th>
+            <th>Review Faculty Input Date</th>
+            <th>Review Release Date</th>
+            <th>IP Open Date</th>
+            <th>IP Official Student Deadline</th>
+            <th>IP Student input Date</th>
+            <th>IP Faculty Input Date</th>
+            <th>IP Release Date</th>
+            <th>DP Open Date</th>
+            <th>DP Official Student Deadline</th>
+            <th>DP Student Input Date</th>
+            <th>DP Faculty Input Date</th>
+            <th>DP Release Date</th>
+            <th>Review</th>
+            <th>Current Degree</th>
+            <th>Start Semester</th>
+            <th>GPR Cumulative</th>
+            <th>Degree Plan Date</th>
+            <th>Qual Exam Date</th>
+            <th>Qual Exam Result</th>
+            <th>Prelim Date</th>
+            <th>Proposal Date</th>
+            <th>Final Exam Defense Date</th>
+            <th>Decision Letter</th>
+         </tr>
+         <% @searches.map do |search| %>
+         <tr>
+            <td><input type="checkbox" name="chk[]"/></td>
+            <td><%= search[:uin] %></td>
+            <td><%= search[:first_name] %></td>
+            <td><%= search[:last_name] %></td>
+            <td><%= search[:review_year] %></td>
+            <td><%= search[:review_official_student_deadline] %></td>
+            <td><%= search[:review_student_input_date] %></td>
+            <td><%= search[:review_faculty_input_date] %></td>
+            <td><%= search[:review_release_date] %></td>
+            <td><%= search[:ip_open_date] %></td>
+            <td><%= search[:ip_official_student_deadline] %></td>
+            <td><%= search[:ip_student_input_date] %></td>
+            <td><%= search[:ip_faculty_input_date] %></td>
+            <td><%= search[:ip_release_date] %></td>
+            <td><%= search[:dp_open_date] %></td>
+            <td><%= search[:dp_official_student_deadline] %></td>
+            <td><%= search[:dp_student_input_date] %></td>
+            <td><%= search[:dp_faculty_input_date] %></td>
+            <td><%= search[:dp_release_date] %></td>
+            <td><button>View</button></td>
+            <td><%= search[:degree] %></td>
+            <td><%= search[:start_semester] %></td>
+            <td><%= search[:cumul_gpa] %>/td>
+            <td><%= search[:degree_plan_date] %></td>
+            <td><%= search[:qual_exam_date] %></td>
+            <td><%= search[:qual_exam_result] %></td>
+            <td><%= search[:prelim_date] %></td>
+            <td><%= search[:proposal_date] %></td>
+            <td><%= search[:final_exam_defence_date] %></td>
+            <td><input type="file" name="fileupload" value="fileupload" id="fileupload"> <label for="fileupload"> Select a file to upload</label> <input type="submit" value="submit"></td>
+         </tr>
+         <%end %>
+      </table>
+   </body>
+</html>
