@@ -1,24 +1,13 @@
-
-
-<%= form_for(review) do |f| %>
-    <p>
-      <label for="name">Name:</label>
-      <%= f.text_field :review_score,placeholder:"Enter your score" %>
-    </p>
-        <p>
-      <label for="name">Name:</label>
-      <%= f.text_field :comments_for_student,placeholder:"Enter cs" %>
-    </p>
-        <p>
-      <label for="name">Name:</label>
-      <%= f.text_field :comments_for_faculty,placeholder:"Enter cf" %>
-    </p>
-            <p>
-      <label for="name">Name:</label>
+<div class="jumbotron">
+  <h1 class="display-5">Review Details</h1>
+  
+<%= bootstrap_form_for(review) do |f| %>
+      <%= f.select :review_score, [['Not rated - 0(X)'],['Unsatisfactory - 1(U)'],['Needs improvement - 2(N)'],['Satisfactory - 3(S)']] %>
+      <%= f.text_area :comments_for_student,placeholder:"Enter comments",rows: "4" %>
+      <%= f.text_area :comments_for_faculty,placeholder:"Enter comments",rows: "4" %>
       <%= f.text_field :notes,placeholder:"Enter notes" %>
-    </p>
-
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>

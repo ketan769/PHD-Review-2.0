@@ -18,27 +18,25 @@ class ReviewsController < ApplicationController
     
     def create
       @review = Review.create!(review_params)
-      flash[:notice] = "#{@review.name} was successfully created."
+      flash[:notice] = "#{@review.user_id} was successfully created."
       redirect_to reviews_path
     end
     
     def edit
-      # id = "123"
       @review = Review.find params[:id]
-      # @review = Review.find id
     end
     
     def update
       @review = Review.find params[:id]
       @review.update_attributes!(review_params)
-      flash[:notice] = "#{@review.name} was successfully updated."
+      flash[:notice] = "#{@review.user_id} was successfully updated."
       redirect_to review_path(@review)
     end
     
     def destroy
       @review = Review.find(params[:id])
       @review.destroy
-      flash[:notice] = "Review '#{@review.name}' deleted."
+      flash[:notice] = "Review '#{@review.user_id}' deleted."
       redirect_to reviews_path
     end
       
