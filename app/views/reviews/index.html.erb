@@ -17,11 +17,11 @@
   <thead>
     <tr>
       <th scope="col">Review Year</th>
+      <th scope="col">Reviewer</th>
       <th scope="col">Open Date</th>
       <th scope="col">Input Deadline</th>
       <th scope="col">Review Deadline</th>
       <th scope="col">Review Release Date</th>
-      <th scope="col">Reviewer</th>
       <th scope="col">Comments for Students</th>
       <th scope="col">Comments for Faculty</th>
       <th scope="col">Notes</th>
@@ -30,20 +30,26 @@
     </tr>
   </thead>
   <tbody>
+  <% @reviews.each do |review| %>
     <tr class="table-primary">
-      <th scope="row">Primary</th>
+      <th scope="row"><%= review.year %></th>
+      <td><%= review.reviewer %></td>
+      <td><%= review.review_open_date %></td>
+      <td><%= review.review_official_student_deadline %></td>
       <td>Column content</td>
+      <td>column</td>
+      <td><%= review.comments_for_student %></td>
+      <td><%= review.comments_for_faculty %></td>
+      <td><%= review.notes %></td>
       <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td><button type="button" class="btn btn-primary" onclick="openEditForm()">Edit</button></td>
+      <!--<td><button type="button" class="btn btn-primary" onclick="openEditForm()">Edit</button></td>-->
+      
+      <td><%= link_to 'Edit', edit_review_path(review) %></td>
+
     </tr>
+  <% end -%>
   </tbody>
+
 </table> 
 
 <script>
@@ -79,7 +85,7 @@
     </div>
     
     <div class="form-group">
-      <label for="Comments for Faculty">Comments for Student</label>
+      <label for="Comments for Faculty">Comments for Faculty</label>
       <textarea class="form-control" id="exampleTextarea" rows="3" spellcheck="false"></textarea>
     </div>
   <button type="submit" class="btn btn-primary">Submit</button>

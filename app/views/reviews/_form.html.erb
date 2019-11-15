@@ -1,17 +1,13 @@
-<%= form_for(review) do |f| %>
-  <% if review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
-
-      <ul>
-      <% review.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<div class="jumbotron">
+  <h1 class="display-5">Review Details</h1>
+  
+<%= bootstrap_form_for(review) do |f| %>
+      <%= f.select :review_score, [['Not rated - 0(X)'],['Unsatisfactory - 1(U)'],['Needs improvement - 2(N)'],['Satisfactory - 3(S)']] %>
+      <%= f.text_area :comments_for_student,placeholder:"Enter comments",rows: "4" %>
+      <%= f.text_area :comments_for_faculty,placeholder:"Enter comments",rows: "4" %>
+      <%= f.text_field :notes,placeholder:"Enter notes" %>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>

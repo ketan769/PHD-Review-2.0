@@ -1,7 +1,9 @@
 class CreateReviews < ActiveRecord::Migration[5.0]
   def change
     create_table :reviews do |t|
+      t.belongs_to :user, index: true
       t.integer :review_id
+      t.string :reviewer
       t.integer :user_id
       t.integer :year
       t.integer :review_score
