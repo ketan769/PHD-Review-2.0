@@ -1,14 +1,21 @@
 
 <html>
+<div>
+<link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css" integrity="" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">PHD REVIEW SYSTEM</a>
+</div>
+
 <div class="page-header">
 <h1>Searched Items</h1>
 </div>
 <head>
-      <title>HTML Table Background</title>
+      <title>Students</title>
    </head>
 	
    <body>
-      <table id='Mytable' border = "1" bordercolor = "green" width=100% style='font-size:70%' > 
+      
+      <table id='Mytable' border = "1" bordercolor = "green" width=100% style='font-size:70%'> 
          <tr>
             <th></th>
             <th>UIN</th>
@@ -62,7 +69,7 @@
             <td><%= rev[:dp_student_input_date] %></td>
             <td><%= rev[:dp_faculty_input_date] %></td>
             <td><%= rev[:dp_release_date] %></td>
-            <td><%= link_to '<button type="button">view</button>'.html_safe, review_path(rev) %></td>
+            <td><%= link_to '<button type="button">view</button>'.html_safe, reviews_path(rev.user[:uin]) %></td>
             <td><%= rev.user[:degree] %></td>
             <td><%= rev.user[:start_semester] %></td>
             <td><%= rev.user[:cumul_gpa]%></td>

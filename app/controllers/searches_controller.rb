@@ -9,7 +9,6 @@ class SearchesController < ApplicationController
     def index
         if params[:uin]!=""
             @temp=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
-            
         return @temp
         end
         logger.debug(params.inspect)

@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20191113165553) do
     t.integer  "year"
     t.integer  "review_score"
     t.string   "notes"
-    t.string   "reviewer"
     t.string   "comments_for_faculty"
     t.string   "comments_for_student"
     t.datetime "review_open_date"
