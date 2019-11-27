@@ -5,17 +5,17 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">PHD REVIEW SYSTEM</a>
 </div>
+<p id=”notice”><%= notice %></p>    
 
 <div class="page-header">
 <h1>Searched Items</h1>
 </div>
 <head>
-      <title>Students</title>
+      <title>PHD-Review-TAMU</title>
    </head>
 	
    <body>
-      
-      <table id='Mytable' border = "1" bordercolor = "green" width=100% style='font-size:70%'> 
+      <table id='Mytable' border = "1" bordercolor = "green" width=100% style='font-size:70%' > 
          <tr>
             <th></th>
             <th>UIN</th>
@@ -83,5 +83,8 @@
          </tr>
          <%end %>
       </table>
+      <%= link_to 'Back', '/searches/new' %>
+      <%= link_to 'add_item', add_item_path() %>
+      
    </body>
 </html>

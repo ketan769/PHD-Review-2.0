@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191113165553) do
+ActiveRecord::Schema.define(version: 20191127172532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,10 @@ ActiveRecord::Schema.define(version: 20191113165553) do
     t.datetime "final_exam_defence_date"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "fieldname"
+    t.string   "advisor"
+    t.string   "start_semester"
+    t.string   "decision_letter"
   end
 
 end
