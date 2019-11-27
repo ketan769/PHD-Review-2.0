@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
    resources :password_resets
-
    resources :auths, only: [:new, :create]
    get 'login', to: 'sessions#new'
    post 'login', to: 'sessions#create'
    get 'welcome', to: 'sessions#welcome'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :searches
-  root "sessions#new"
-  resources :reviews
-
+   root "sessions#new"
+   get 'add_user', to: 'searches#add_user'
+   get 'user_create', to: 'searches#user_create'
+   get 'add_item' ,to: 'searches#add_item'
+   get 'item_create' ,to: 'searches#item_create'
+   get 'det_update' ,to: 'searches#det_update'
+   resources :reviews
 end
+
