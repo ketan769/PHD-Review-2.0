@@ -56,6 +56,8 @@ class SearchesController < ApplicationController
             session[:review_year]=params[:review_year]
             session[:first_name]=params[:first_name]
             session[:last_name]=params[:last_name]
+            session[:duin]=@temp.pluck(:user_id)
+            session[:dyear]=@temp.pluck(:year)
             return @temp
         end
     end
@@ -65,6 +67,16 @@ class SearchesController < ApplicationController
     end
     
     def date
+        temp=params[:chk]
+        temp1=[]
+        temp.each do |i|
+            if i=="on"
+                temp1[-1]="on"
+            else
+                temp1.append(i) 
+            end
+        end
+        session[:chk]=temp1
     end
     
     def add_user
@@ -110,5 +122,33 @@ class SearchesController < ApplicationController
                                 :prelim_date => params[:prelim_date],:proposal_date => params[:proposal_date] , :final_exam_defence_date =>params[:final_exam_defence_date])
       flash[:notice] = "Updated"
       redirect_to :controller => 'searches', :action => 'index'        
+    end
+    def date_update
+        tempd1=session[:duin]
+        session[:duin]=nil
+        tempd2=session[:dyear]
+        session[:dyear]=nil
+        tempd3=session[:chk]
+        
+        k=0
+        
+        tempd1.zip(tempd2).each do |i,j|
+            if tempd3[k]=='off'
+                k=k+1
+                next
+            else
+                byebug
+                @rev=Review.find_by(:user_id =>i ,:year => j)
+                @rev.update_attributes(:review_official_student_deadline => params[:rosd_date],:review_student_input_date =>params[:rsid_date],
+                                        :review_faculty_input_date =>params[:rfid_date],:review_release_date => params[:rrd_date],:ip_open_date =>params[:ipod_date],
+                                        :ip_official_student_deadline => params[:ipsd_date],:ip_student_input_date => params[:ipsid_date],
+                                        :ip_faculty_input_date => params[:ipfd_date],:ip_release_date => params[:iprd_date],:dp_open_date => params[:dpo_date],
+                                        :dp_official_student_deadline => params[:dpos_date],:dp_student_input_date => params[:dpsi_date],:dp_faculty_input_date => params[:dpfi_date],
+                                         :dp_release_date =>params[:dprd_date])
+                k=k+1
+            end
+        end
+        
+        redirect_to :controller => 'searches', :action => 'index'       
     end
 end
