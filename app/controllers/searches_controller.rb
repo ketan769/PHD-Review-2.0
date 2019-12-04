@@ -50,8 +50,6 @@ class SearchesController < ApplicationController
             flash[:notice] = "No record found"
             render '/searches/new'    
         else
-            # temp_uin=@temp.pluck(:uin).uniq
-            # temp_year=@temp.pluck(:year).uniq
             session[:uin]=params[:uin]
             session[:review_year]=params[:review_year]
             session[:first_name]=params[:first_name]
@@ -84,6 +82,7 @@ class SearchesController < ApplicationController
     end
     
     def user_create
+        byebug
         if params[:password]!=params[:c_password]
             flash[:notice] = "Password and Confirm password Should Match"
             render '/searches/add_user'  
@@ -144,7 +143,7 @@ class SearchesController < ApplicationController
                                         :ip_official_student_deadline => params[:ipsd_date],:ip_student_input_date => params[:ipsid_date],
                                         :ip_faculty_input_date => params[:ipfd_date],:ip_release_date => params[:iprd_date],:dp_open_date => params[:dpo_date],
                                         :dp_official_student_deadline => params[:dpos_date],:dp_student_input_date => params[:dpsi_date],:dp_faculty_input_date => params[:dpfi_date],
-                                         :dp_release_date =>params[:dprd_date])
+                                        :dp_release_date =>params[:dprd_date])
                 k=k+1
             end
         end
