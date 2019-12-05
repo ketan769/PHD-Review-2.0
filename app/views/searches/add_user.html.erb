@@ -16,28 +16,30 @@
 
 <h1>Create User</h1>
 </div>
-
+<div class="container">
+<bootstrap_form_for>  
 <form action ="/user_create" >
+    <div class="form-row">
+      <fieldset>
+        <div class="form-group">
+          <label for="UIN">UIN</label>
+          <input type="text" name="uin" class="form-control" maxlength="10" >
+        </div>
     <fieldset>
-    <div class="form-group">
-      <label for="UIN">UIN</label>
-      <input type="text" name="uin" class="form-control" >
-    </div>
-    <fieldset>
-    <div class="form-group">
+    <div class="form-group-col-md-4">
       <label for="first_name">First Name</label>
-      <input type="text" name="first_name" class="form-control" >
+      <input type="text" name="first_name" class="form-control" maxlength="20" >
     </div>
     <fieldset>
-    <div class="form-group">
+    <div class="form-group-col-md-6">
       <label for="last_name">Last Name</label>
-      <input type="text" name="last_name" class="form-control" >
+      <input type="text" name="last_name" class="form-control" maxlength="20" >
     </div>
     
     <fieldset>
      <div class="form-group">
       <label for="review_year">Review Year</label>
-      <input type="text" name="review_year" class="form-control" >
+      <input type="text" name="review_year" class="form-control" maxlength="4" >
     </div>
       <fieldset>
     <div class="form-group">
@@ -46,6 +48,16 @@
   <option>A</option>
   <option>S</option>
   <option>F</option>
+</select>
+    </div>
+      <fieldset>
+      
+    <div class="form-group">
+      <label for="advisor">Advisor</label>
+      <select name="advisor">
+      <% @temp21.each do |ad| %>  
+        <option><%=ad%></option>
+      <%end%>
 </select>
     </div>
       <fieldset>
@@ -64,7 +76,8 @@
       <input type="text" name="c_password"  class="form-control" >
     </div>
   <button type="submit" class="btn btn-primary">Create</button>
-  
 </form>
+<form action="/searches/new"><button class="btn btn-primary">Back</button></form>
 </div>
 </html>
+

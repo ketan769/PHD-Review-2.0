@@ -18,9 +18,9 @@
 
 <div class="container">
 <%@detail.each do |rev| %>
-<bootstrap_form_for action ="/det_update" >
+<bootstrap_form_for  >
 
-    <form>
+    <form action ="/det_update">
         <div class='form-row'>
             
             <div class="form-group col-md-4">
@@ -52,7 +52,7 @@
               
             <div class="form-group col-md-4">
               <label for="advisor">Advisor</label>
-              <input type="text" class="form-control" name="advisor" value="<%=rev.user[:advisor]%>">
+              <input type="text" class="form-control" name="advisor" value="<%=@tempad%>" readonly>
             </div>
         </div>
         <div class="form-row">
