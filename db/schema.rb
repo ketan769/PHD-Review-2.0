@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191127172532) do
+ActiveRecord::Schema.define(version: 20191130073518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20191127172532) do
     t.datetime "dp_release_date"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "decision_letter"
+    t.datetime "review_release_date"
   end
 
   create_table "searches", id: false, force: :cascade do |t|
@@ -80,7 +82,7 @@ ActiveRecord::Schema.define(version: 20191127172532) do
     t.string   "degree"
     t.string   "review_year"
     t.integer  "cumul_gpa"
-    t.datetime "degree_plan_date"
+    t.date     "degree_plan_date"
     t.datetime "qual_exam_date"
     t.string   "qual_exam_result"
     t.datetime "prelim_date"

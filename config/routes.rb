@@ -12,6 +12,8 @@ Rails.application.routes.draw do
    get 'add_item' ,to: 'searches#add_item'
    get 'item_create' ,to: 'searches#item_create'
    get 'det_update' ,to: 'searches#det_update'
+   get 'date' ,to: 'searches#date'
+   get 'date_update' ,to: 'searches#date_update'
    resources :reviews
 end
 

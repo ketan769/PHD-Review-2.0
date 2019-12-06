@@ -8,80 +8,103 @@
 </nav>
 <div class="container">
 <head>
-      <title>PHD-Review-TAMU</title>
-   </head>
+  <title>PHD-Review-TAMU</title>
+</head>
 
 <div class="page-header">
-<h1>Student Details</h1>
-
+    </br>
+    <h1>Student Details</h1>
 </div>
+
+<div class="container">
 <%@detail.each do |rev| %>
-<form action ="/det_update" >
-    <fieldset>
-    <div class="form-group">
-      <label for="UIN">UIN</label>
-      <input type="text" name="uin"  value = "<%=rev.user[:uin]%>" >
-    </div>
-    <fieldset>
-    <div class="form-group">
-      <label for="first_name">First Name</label>
-      <input type="text" name="first_name"  value = "<%=rev.user[:first_name]%>" >
-    </div>
-    <fieldset>
-    <div class="form-group">
-      <label for="last_name">Last Name</label>
-      <input type="text" name="last_name" value = "<%=rev.user[:last_name]%>" >
-    </div>
+<bootstrap_form_for action ="/det_update" >
+
+    <form>
+        <div class='form-row'>
+            
+            <div class="form-group col-md-4">
+              <label for="uin">UIN</label>
+              <input type="text" class="form-control" name="uin"  value = "<%=rev.user[:uin]%>" >
+            </div>
+            
+            <div class="form-group col-md-4">
+              <label for="first_name">First Name</label>
+              <input type="text" class="form-control" name="first_name"  value = "<%=rev.user[:first_name]%>" >
+            </div>
+            
+            <div class="form-group col-md-4">
+              <label for="last_name">Last Name</label>
+              <input type="text" class="form-control" name="last_name" value = "<%=rev.user[:last_name]%>" >
+            </div>
+        </div>
+        <div class="form-row">
     
-    <fieldset>
-     <div class="form-group">
-      <label for="start_semester">Start Semester</label>
-      <input type="text" name="start_semester" value="<%=rev.user[:start_semester]%>" >
-    </div>
-      <fieldset>
-    <div class="form-group">
-      <label for="cumul_gpa">Cumulative GPA</label>
-      <input type="text" name="cumul_gpa" value="<%=rev.user[:cumul_gpa]%>" >
-    </div>
-      <fieldset>
-    <div class="form-group">
-      <label for="advisor">Advisor</label>
-      <input type="text" name="advisor" value="<%=rev.user[:advisor]%>">
-    </div>
-  <fieldset>
-     <div class="form-group">
-      <label for="degree_plan_date">Degree Plan Date</label></label>
-      <input type="datetime-local" name="degree_plan_date" value="<%=rev.user[:degree_plan_date]%>" >
-    </div>
-  <fieldset>
-     <div class="form-group">
-      <label for="prelim_date">Prelim Date</label>
-      <input type="datetime-local" name="prelim_date"  value="<%=rev.user[:prelim_date]%>">
-    </div>
-  <fieldset>
-     <div class="form-group">
-      <label for="proposal_date">Proposal Date</label>
-      <input type="datetime-local" name="proposal_date"  value="<%=rev.user[:proposal_date]%>">
-    </div>  
-    <fieldset>
-     <div class="form-group">
-      <label for="final_exam_defence_date">Final Exam Defence Date</label>
-      <input type="datetime-local" name="final_exam_defence_date"  value="<%=rev.user[:final_exam_defence_date]%>">
-    </div>
-      <fieldset>
-     <div class="form-group">
-      <label for="cv">CV</label>
-      <input type="text" name="cv"  >
-    </div>
-      <fieldset>
-     <div class="form-group">
-      <label for="sr">Student Report</label>
-      <input type="text" name="student_report">
-    </div>
-  <button type="submit" class="btn btn-primary">Save</button>
-</form>
-<form action="/searches"><button  class="btn btn-primary">Back</button></form>
+            <div class="form-group col-md-4">
+              <label for="start_semester">Start Semester</label>
+              <input type="text" class="form-control" name="start_semester" value="<%=rev.user[:start_semester]%>" >
+            </div>
+              
+            <div class="form-group col-md-4">
+              <label for="cumul_gpa">Cumulative GPA</label>
+              <input type="number" step="0.01" min="0" max="4" class="form-control" name="cumul_gpa" value="<%=rev.user[:cumul_gpa]%>" >
+            </div>
+              
+            <div class="form-group col-md-4">
+              <label for="advisor">Advisor</label>
+              <input type="text" class="form-control" name="advisor" value="<%=rev.user[:advisor]%>">
+            </div>
+        </div>
+        <div class="form-row">
+  
+            <div class="form-group col-md-6">
+              <label for="degree_plan_date">Degree Plan Date</label>
+              <input type="date" class="form-control" name="degree_plan_date" value="<%=rev.user[:degree_plan_date]%>" >
+            </div>
+          
+            <div class="form-group col-md-6">
+              <label for="prelim_date">Prelim Date</label>
+              <input type="date" class="form-control" name="prelim_date"  value="<%=rev.user[:prelim_date]%>">
+            </div>
+          
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="proposal_date">Proposal Date</label>
+              <input type="date" class="form-control" name="proposal_date"  value="<%=rev.user[:proposal_date]%>">
+            </div>  
+            
+            <div class="form-group col-md-6">
+              <label for="final_exam_defence_date">Final Exam Defence Date</label>
+              <input type="date" class="form-control" name="final_exam_defence_date"  value="<%=rev.user[:final_exam_defence_date]%>">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="sr">Student Report</label>
+              <input type="text" class="form-control" name="student_report">
+            </div>
+            
+            <div class="form-group col-md-6">
+              <label for="cv">CV</label>
+              <input type="text" class="form-control" name="cv">
+            </div>
+        </div>
+        </br>
+        <div class="form-row">
+            <div class="form-group col-md-1">
+              <form action="/searches"><button class="btn btn-primary">Back</button></form>
+            </div>
+            
+            <div class="form-group col-md-1 offset-md-10">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </form>
+    
+    
 </div>
 <%end%>
-</body>    
+</body> 
+</div>
 </html>
