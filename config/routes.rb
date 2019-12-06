@@ -14,6 +14,7 @@ Rails.application.routes.draw do
    get 'det_update' ,to: 'searches#det_update'
    get 'date' ,to: 'searches#date'
    get 'date_update' ,to: 'searches#date_update'
+   get 'studet' ,to: 'searches#studet'
    resources :reviews
 end
 

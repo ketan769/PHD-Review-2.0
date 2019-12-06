@@ -8,7 +8,7 @@
   </button>
 </nav>
 <div class="container">
-
+<p id=”notice”><%= notice %></p>    
 <div class="page-header">
 <h1>STUDENT REVIEW</h1>
 </div>
@@ -16,15 +16,15 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      
       <th scope="col">Review Year</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
       <th scope="col">Reviewer</th>
-      <th scope="col">Open Date</th>
-      <th scope="col">Input Deadline</th>
+      <th scope="col">IP Open Date</th>
+      <th scope="col">Review Input Deadline</th>
       <th scope="col">Review Deadline</th>
       <th scope="col">Review Release Date</th>
-      <th scope="col">Comments for Students</th>
-      <th scope="col">Comments for Faculty</th>
-      <th scope="col">Notes</th>
       <th scope="col">Documents</th>
       <th scope="col">Edit</th>
     </tr>
@@ -33,25 +33,22 @@
   <% @reviews.each do |review| %>
     <tr class="table-primary">
       <th scope="row"><%= review.year %></th>
+      <td><%= review.user.first_name %></td>
+      <td><%= review.user.last_name %></td>
       <td><%= review.reviewer %></td>
-      <td><%= review.review_open_date %></td>
+      <td><%= review.ip_open_date %></td>
+      <td><%= review.review_student_input_date %></td>
       <td><%= review.review_official_student_deadline %></td>
-      <td>Column content</td>
-      <td>column</td>
-      <td><%= review.comments_for_student %></td>
-      <td><%= review.comments_for_faculty %></td>
-      <td><%= review.notes %></td>
+      <td><%= review.review_release_date %></td>
       <td>Column content</td>
       <!--<td><button type="button" class="btn btn-primary" onclick="openEditForm()">Edit</button></td>-->
       
       <td><%= link_to 'Edit', edit_review_path(review) %></td>
-
     </tr>
   <% end -%>
   </tbody>
-
 </table> 
-
+<form action="/searches"><button class="btn btn-primary">Back</button></form>
 <script>
   function openEditForm() {
     var x = document.getElementById("editForm");
@@ -72,10 +69,10 @@
     <label for="review_year">Review Score</label>
     <select class="custom-select" id="review_score">
       <option selected="">Select review score</option>
-      <option value="1">Not rated - 0(X)</option>
-      <option value="2">Unsatisfactory - 1(U)</option>
-      <option value="3">Needs improvement - 2(N)</option>
-      <option value="4">Satisfactory - 3(S)</option>
+      <option value="1">Not rated</option>
+      <option value="2">Unsatisfactory</option>
+      <option value="3">Needs Improvement</option>
+      <option value="4">Satisfactory</option>
     </select>
   </div>
  
@@ -90,4 +87,5 @@
     </div>
   <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+
 </div>

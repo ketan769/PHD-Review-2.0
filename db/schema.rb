@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191130073518) do
+ActiveRecord::Schema.define(version: 20191206010348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,29 +39,29 @@ ActiveRecord::Schema.define(version: 20191130073518) do
     t.integer  "review_id"
     t.bigint   "user_id"
     t.integer  "year"
-    t.integer  "review_score"
+    t.string   "review_score"
     t.string   "notes"
     t.string   "reviewer"
     t.string   "comments_for_faculty"
     t.string   "comments_for_student"
-    t.datetime "review_open_date"
-    t.datetime "review_official_student_deadline"
-    t.datetime "review_student_input_date"
-    t.datetime "review_faculty_input_date"
-    t.datetime "ip_open_date"
-    t.datetime "ip_official_student_deadline"
-    t.datetime "ip_student_input_date"
-    t.datetime "ip_faculty_input_date"
-    t.datetime "ip_release_date"
-    t.datetime "dp_open_date"
-    t.datetime "dp_official_student_deadline"
-    t.datetime "dp_student_input_date"
-    t.datetime "dp_faculty_input_date"
-    t.datetime "dp_release_date"
+    t.date     "review_open_date"
+    t.date     "review_official_student_deadline"
+    t.date     "review_student_input_date"
+    t.date     "review_faculty_input_date"
+    t.date     "ip_open_date"
+    t.date     "ip_official_student_deadline"
+    t.date     "ip_student_input_date"
+    t.date     "ip_faculty_input_date"
+    t.date     "ip_release_date"
+    t.date     "dp_open_date"
+    t.date     "dp_official_student_deadline"
+    t.date     "dp_student_input_date"
+    t.date     "dp_faculty_input_date"
+    t.date     "dp_release_date"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.string   "decision_letter"
-    t.datetime "review_release_date"
+    t.date     "review_release_date"
   end
 
   create_table "searches", id: false, force: :cascade do |t|
@@ -81,13 +81,13 @@ ActiveRecord::Schema.define(version: 20191130073518) do
     t.string   "major"
     t.string   "degree"
     t.string   "review_year"
-    t.integer  "cumul_gpa"
+    t.decimal  "cumul_gpa"
     t.date     "degree_plan_date"
-    t.datetime "qual_exam_date"
+    t.date     "qual_exam_date"
     t.string   "qual_exam_result"
-    t.datetime "prelim_date"
-    t.datetime "proposal_date"
-    t.datetime "final_exam_defence_date"
+    t.date     "prelim_date"
+    t.date     "proposal_date"
+    t.date     "final_exam_defence_date"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "fieldname"

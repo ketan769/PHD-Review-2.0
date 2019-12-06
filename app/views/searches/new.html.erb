@@ -10,7 +10,7 @@
 <div class="container">
 <p id=”notice”><%= notice %></p>    
 <div class="page-header">
-<form action ="/add_user"><button  class="btn btn-primary"  style="float: right;">Add User</button></form>
+<form action ="/login"><button  class="btn btn-primary"  style="float: right;">Log Out</button></form>
 <h1>Search for a student</h1>
 </div>
 <head>
@@ -21,24 +21,24 @@
     <fieldset>
     <div class="form-group">
       <label for="UIN">UIN</label>
-      <input type="text" name="uin" size="50" class="form-control" placeholder="Enter UIN">
+      <input type="text" name="uin" size="50" class="form-control" placeholder="Enter UIN" maxlength="10">
     </div>
     
     <fieldset>
     <div class="form-group">
       <label for="first_name">First Name</label>
-      <input type="text" name="first_name" class="form-control" placeholder="Enter first name">
+      <input type="text" name="first_name" class="form-control" placeholder="Enter first name" maxlength="20">
     </div>
     <fieldset>
     <div class="form-group">
       <label for="last_name">Last Name</label>
-      <input type="text" name="last_name" class="form-control" placeholder="Enter last name">
+      <input type="text" name="last_name" class="form-control" placeholder="Enter last name" maxlength="20">
     </div>
     
     <fieldset>
      <div class="form-group">
       <label for="review_year">Review Year</label>
-      <input type="text" name="review_year" size="50" class="form-control" placeholder="Enter Review year">
+      <input type="text" name="review_year" size="50" class="form-control" placeholder="Enter Review year" maxlength="4">
     </div>  
   <!--  <div class="form-group">-->
   <!--  <label for="review_year">Review Year</label>-->
@@ -49,10 +49,8 @@
   <!--  </select>-->
   <!--</div>-->
  
-  <button type="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-primary">Submit</button></form>
 
-  
-</form>
+<form action ="/add_user"><button  class="btn btn-primary"  style="float: right;">Add User</button></form>
 </div>
-
 </html>
