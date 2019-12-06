@@ -14,27 +14,27 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-12-06T16:18:00+00:00">2019-12-06T16:18:00+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-12-06T22:08:33+00:00">2019-12-06T22:08:33+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">40.8%</span></span>
+    (<span class="covered_percent"><span class="red">45.43%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.37
+         1.45
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>24</b> files in total.
-    <b>326</b> relevant lines. 
-    <span class="green"><b>133</b> lines covered</span> and
-    <span class="red"><b>193</b> lines missed </span>
+    <b>328</b> relevant lines. 
+    <span class="green"><b>149</b> lines covered</span> and
+    <span class="red"><b>179</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -112,12 +112,12 @@
       
       <tr>
         <td class="strong"><a href="#87edb8d096caa6de0b4c911850a7d67b5860b27b" class="src_link" title="app/controllers/searches_controller.rb">app/controllers/searches_controller.rb</a></td>
-        <td class="red strong">70.2 %</td>
-        <td>228</td>
-        <td>151</td>
-        <td>106</td>
-        <td>45</td>
-        <td>2.5</td>
+        <td class="red strong">79.74 %</td>
+        <td>230</td>
+        <td>153</td>
+        <td>122</td>
+        <td>31</td>
+        <td>2.6</td>
       </tr>
       
       <tr>
@@ -257,7 +257,7 @@
         <td>7</td>
         <td>6</td>
         <td>1</td>
-        <td>6.9</td>
+        <td>8.1</td>
       </tr>
       
       <tr>
@@ -299,20 +299,20 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     <span class="group_name">Controllers</span>
-    (<span class="covered_percent"><span class="red">42.26%</span></span>
+    (<span class="covered_percent"><span class="red">47.94%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.45
+         1.51
        </span>
     </span> hits/line)
   </h2>
   <a name="Controllers"></a>
   <div>
     <b>6</b> files in total.
-    <b>265</b> relevant lines. 
-    <span class="green"><b>112</b> lines covered</span> and
-    <span class="red"><b>153</b> lines missed </span>
+    <b>267</b> relevant lines. 
+    <span class="green"><b>128</b> lines covered</span> and
+    <span class="red"><b>139</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -370,12 +370,12 @@
       
       <tr>
         <td class="strong"><a href="#87edb8d096caa6de0b4c911850a7d67b5860b27b" class="src_link" title="app/controllers/searches_controller.rb">app/controllers/searches_controller.rb</a></td>
-        <td class="red strong">70.2 %</td>
-        <td>228</td>
-        <td>151</td>
-        <td>106</td>
-        <td>45</td>
-        <td>2.5</td>
+        <td class="red strong">79.74 %</td>
+        <td>230</td>
+        <td>153</td>
+        <td>122</td>
+        <td>31</td>
+        <td>2.6</td>
       </tr>
       
       <tr>
@@ -457,7 +457,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.47
+         1.68
        </span>
     </span> hits/line)
   </h2>
@@ -539,7 +539,7 @@
         <td>7</td>
         <td>6</td>
         <td>1</td>
-        <td>6.9</td>
+        <td>8.1</td>
       </tr>
       
       <tr>
@@ -1673,11 +1673,11 @@
         <div class="source_table" id="87edb8d096caa6de0b4c911850a7d67b5860b27b">
   <div class="header">
     <h3>app/controllers/searches_controller.rb</h3>
-    <h4><span class="red">70.2 %</span> covered</h4>
+    <h4><span class="red">79.74 %</span> covered</h4>
     <div>
-      <b>151</b> relevant lines. 
-      <span class="green"><b>106</b> lines covered</span> and
-      <span class="red"><b>45</b> lines missed.</span>
+      <b>153</b> relevant lines. 
+      <span class="green"><b>122</b> lines covered</span> and
+      <span class="red"><b>31</b> lines missed.</span>
     </div>
   </div>
   
@@ -2680,56 +2680,56 @@
           <code class="ruby">    def studet</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="167">
-          
+        <li class="covered" data-hits="1" data-linenumber="167">
+          <span class="hits">1</span>
           
           <code class="ruby">      @detail=Review.rev_func(params[:uin]).select(&#39;DISTINCT ON (reviews.user_id,reviews.year) *&#39;).limit(1)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="168">
-          
+        <li class="covered" data-hits="1" data-linenumber="168">
+          <span class="hits">1</span>
           
           <code class="ruby">      @revs=Review.rev_func(params[:uin]).select(&#39;DISTINCT ON (reviews.user_id,reviews.year) *&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="169">
-          
+        <li class="covered" data-hits="1" data-linenumber="169">
+          <span class="hits">1</span>
           
           <code class="ruby">      temp=@detail.pluck(:user_id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="170">
-          
+        <li class="covered" data-hits="1" data-linenumber="170">
+          <span class="hits">1</span>
           
           <code class="ruby">      temp2=User.where(:uin =&gt; temp[0]).pluck(:advisor)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="171">
-          
+        <li class="covered" data-hits="1" data-linenumber="171">
+          <span class="hits">1</span>
           
           <code class="ruby">      temp3=User.where(:uin =&gt; temp2[0]).pluck(:first_name)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="172">
-          
+        <li class="covered" data-hits="1" data-linenumber="172">
+          <span class="hits">1</span>
           
           <code class="ruby">      temp4=User.where(:uin =&gt; temp2[0]).pluck(:last_name)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="173">
-          
+        <li class="covered" data-hits="1" data-linenumber="173">
+          <span class="hits">1</span>
           
           <code class="ruby">      if temp3!=[] and temp4!=[]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="174">
-          
+        <li class="covered" data-hits="1" data-linenumber="174">
+          <span class="hits">1</span>
           
           <code class="ruby">        temp5=temp3[0]+&#39; &#39;+temp4[0]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="175">
-          
+        <li class="covered" data-hits="1" data-linenumber="175">
+          <span class="hits">1</span>
           
           <code class="ruby">        @tempad=temp5</code>
         </li>
@@ -2788,265 +2788,277 @@
           <code class="ruby">    def item_create</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="185">
-          
+        <li class="covered" data-hits="1" data-linenumber="185">
+          <span class="hits">1</span>
           
           <code class="ruby">        temp1=Review.rev_func(params[:uin]).where(:year =&gt; params[:review_year]).select(&#39;DISTINCT ON (reviews.user_id,reviews.year) *&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="186">
-          
+        <li class="covered" data-hits="1" data-linenumber="186">
+          <span class="hits">1</span>
           
           <code class="ruby">        if temp1==[]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="187">
-          
+        <li class="covered" data-hits="1" data-linenumber="187">
+          <span class="hits">1</span>
           
           <code class="ruby">            Review.create(:user_id =&gt; params[:uin] ,:year =&gt; params[:review_year])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="188">
-          
+        <li class="covered" data-hits="1" data-linenumber="188">
+          <span class="hits">1</span>
           
           <code class="ruby">            flash[:notice] = &quot;Line Item Added&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="189">
+        <li class="covered" data-hits="1" data-linenumber="189">
+          <span class="hits">1</span>
           
+          <code class="ruby">            byebug</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="190">
+          <span class="hits">1</span>
           
           <code class="ruby">            redirect_to :controller =&gt; &#39;searches&#39;, :action =&gt; &#39;index&#39; </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="190">
+        <li class="never" data-hits="" data-linenumber="191">
           
           
           <code class="ruby">        else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="191">
+        <li class="missed" data-hits="0" data-linenumber="192">
           
           
           <code class="ruby">            flash[:notice] = &quot;Line Item Already Exists&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="192">
+        <li class="missed" data-hits="0" data-linenumber="193">
           
           
           <code class="ruby">            redirect_to :controller =&gt; &#39;searches&#39;, :action =&gt; &#39;index&#39;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="193">
-          
-          
-          <code class="ruby">        end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="194">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">        end</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="195">
           <span class="hits">1</span>
           
+          <code class="ruby">        byebug</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="196">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="197">
+          <span class="hits">1</span>
+          
           <code class="ruby">    def det_update</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="196">
+        <li class="missed" data-hits="0" data-linenumber="198">
           
           
           <code class="ruby">      @temp=User.find(params[:uin])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="197">
+        <li class="missed" data-hits="0" data-linenumber="199">
           
           
           <code class="ruby">      @temp.update_attributes!(:first_name =&gt;params[:first_name],:last_name =&gt;params[:last_name],:start_semester =&gt; params[:start_semester],</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="198">
+        <li class="never" data-hits="" data-linenumber="200">
           
           
           <code class="ruby">                                :cumul_gpa =&gt;params[:cumul_gpa],:degree_plan_date =&gt;params[:degree_plan_date],</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="199">
+        <li class="never" data-hits="" data-linenumber="201">
           
           
           <code class="ruby">                                :prelim_date =&gt; params[:prelim_date],:proposal_date =&gt; params[:proposal_date] , :final_exam_defence_date =&gt;params[:final_exam_defence_date])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="200">
+        <li class="missed" data-hits="0" data-linenumber="202">
           
           
           <code class="ruby">      flash[:notice] = &quot;Updated&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="201">
+        <li class="missed" data-hits="0" data-linenumber="203">
           
           
           <code class="ruby">      redirect_to :controller =&gt; &#39;searches&#39;, :action =&gt; &#39;index&#39;        </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="202">
+        <li class="never" data-hits="" data-linenumber="204">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="203">
+        <li class="covered" data-hits="1" data-linenumber="205">
           <span class="hits">1</span>
           
           <code class="ruby">    def date_update</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="204">
+        <li class="missed" data-hits="0" data-linenumber="206">
           
           
           <code class="ruby">        tempd1=session[:duin]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="205">
+        <li class="missed" data-hits="0" data-linenumber="207">
           
           
           <code class="ruby">        session[:duin]=nil</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="206">
+        <li class="missed" data-hits="0" data-linenumber="208">
           
           
           <code class="ruby">        tempd2=session[:dyear]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="207">
+        <li class="missed" data-hits="0" data-linenumber="209">
           
           
           <code class="ruby">        session[:dyear]=nil</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="208">
+        <li class="missed" data-hits="0" data-linenumber="210">
           
           
           <code class="ruby">        tempd3=session[:chk]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="209">
+        <li class="missed" data-hits="0" data-linenumber="211">
           
           
           <code class="ruby">        k=0</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="210">
+        <li class="missed" data-hits="0" data-linenumber="212">
           
           
           <code class="ruby">        tempd1.zip(tempd2).each do |i,j|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="211">
+        <li class="missed" data-hits="0" data-linenumber="213">
           
           
           <code class="ruby">            if tempd3[k]==&#39;off&#39;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="212">
+        <li class="missed" data-hits="0" data-linenumber="214">
           
           
           <code class="ruby">                k=k+1</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="213">
+        <li class="missed" data-hits="0" data-linenumber="215">
           
           
           <code class="ruby">                next</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="214">
+        <li class="never" data-hits="" data-linenumber="216">
           
           
           <code class="ruby">            else</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="215">
+        <li class="never" data-hits="" data-linenumber="217">
           
           
           <code class="ruby">                </code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="216">
+        <li class="missed" data-hits="0" data-linenumber="218">
           
           
           <code class="ruby">                @rev=Review.find_by(:user_id =&gt;i ,:year =&gt; j)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="217">
+        <li class="missed" data-hits="0" data-linenumber="219">
           
           
           <code class="ruby">                @rev.update_attributes(:review_official_student_deadline =&gt; params[:rosd_date],:review_student_input_date =&gt;params[:rsid_date],</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="218">
+        <li class="never" data-hits="" data-linenumber="220">
           
           
           <code class="ruby">                                        :review_faculty_input_date =&gt;params[:rfid_date],:review_release_date =&gt; params[:rrd_date],:ip_open_date =&gt;params[:ipod_date],</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="219">
+        <li class="never" data-hits="" data-linenumber="221">
           
           
           <code class="ruby">                                        :ip_official_student_deadline =&gt; params[:ipsd_date],:ip_student_input_date =&gt; params[:ipsid_date],</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="220">
+        <li class="never" data-hits="" data-linenumber="222">
           
           
           <code class="ruby">                                        :ip_faculty_input_date =&gt; params[:ipfd_date],:ip_release_date =&gt; params[:iprd_date],:dp_open_date =&gt; params[:dpo_date],</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="221">
+        <li class="never" data-hits="" data-linenumber="223">
           
           
           <code class="ruby">                                        :dp_official_student_deadline =&gt; params[:dpos_date],:dp_student_input_date =&gt; params[:dpsi_date],:dp_faculty_input_date =&gt; params[:dpfi_date],</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="222">
+        <li class="never" data-hits="" data-linenumber="224">
           
           
           <code class="ruby">                                        :dp_release_date =&gt;params[:dprd_date])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="223">
+        <li class="missed" data-hits="0" data-linenumber="225">
           
           
           <code class="ruby">                k=k+1</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="224">
+        <li class="never" data-hits="" data-linenumber="226">
           
           
           <code class="ruby">            end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="225">
+        <li class="never" data-hits="" data-linenumber="227">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="226">
+        <li class="missed" data-hits="0" data-linenumber="228">
           
           
           <code class="ruby">        redirect_to :controller =&gt; &#39;searches&#39;, :action =&gt; &#39;index&#39;       </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="227">
+        <li class="never" data-hits="" data-linenumber="229">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="228">
+        <li class="never" data-hits="" data-linenumber="230">
           
           
           <code class="ruby">end</code>
@@ -3756,14 +3768,14 @@
           <code class="ruby">  def self.rev_func (revs)</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="5">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="18" data-linenumber="5">
+          <span class="hits">18</span>
           
           <code class="ruby">     if revs!=&quot;&quot;</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="6">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="18" data-linenumber="6">
+          <span class="hits">18</span>
           
           <code class="ruby">        @rev=Review.includes(:user).where(:user_id =&gt; revs)</code>
         </li>
@@ -3786,8 +3798,8 @@
           <code class="ruby">     end</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="10">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="18" data-linenumber="10">
+          <span class="hits">18</span>
           
           <code class="ruby">     return @rev</code>
         </li>

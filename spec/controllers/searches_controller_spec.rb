@@ -145,6 +145,41 @@ RSpec.describe SearchesController, type: :controller do
             expect(response).to render_template('searches/new')
         end
     end
+    describe 'studet' do
+        let!(:auths){Auth.create!([{:username =>328,:role => "Faculty",:password =>'k'},{:username =>329,:role => "S",:password =>'k'}])}
+        let!(:users){User.create!([{:uin =>328, :advisor => "",:first_name =>'k' ,:last_name => 's'},{:uin =>329, :advisor => "328"}])}
+        let!(:reviews){Review.create!([{:user_id =>328 ,:year =>2020},{:user_id =>329 ,:year =>2020}])}
 
+        it 'Student details' do
+            get :studet, :params=> {:uin => "329"}
+            expect(response).to render_template('searches/studet')
+        end
+    end
+    describe 'add_item' do
+        let!(:auths){Auth.create!([{:username =>328,:role => "Faculty",:password =>'k'},{:username =>329,:role => "S",:password =>'k'}])}
+        let!(:users){User.create!([{:uin =>328, :advisor => "",:first_name =>'k' ,:last_name => 's'},{:uin =>329, :advisor => "328"}])}
+        let!(:reviews){Review.create!([{:user_id =>328 ,:year =>2020},{:user_id =>329 ,:year =>2020}])}
+
+        it 'renders the add item screen' do
+            get :add_item 
+            expect(response).to render_template('searches/add_item')
+        end
+    end
+     describe 'item_create' do
+        let!(:auths){Auth.create!([{:username =>328,:role => "Faculty",:password =>'k'},{:username =>329,:role => "S",:password =>'k'}])}
+        let!(:users){User.create!([{:uin =>328, :advisor => "",:first_name =>'k' ,:last_name => 's'},{:uin =>329, :advisor => "328"}])}
+        let!(:reviews){Review.create!([{:user_id =>328 ,:year =>2020},{:user_id =>329 ,:year =>2020}])}
+
+        # it 'adds an item to the screen' do
+        #     get :item_create, :params=> {:uin => "329",:year =>2022}
+        #     expect(flash[:notice]).to match("Line Item Added")
+        # end
+        it 'adds an item to the screen and in reviews table' do
+            get :item_create, :params=> {:uin => 329,:review_year =>2022}
+            temp=Review.find_by(:user_id =>329 ,:year =>2022)
+            expect(temp).not_to be_nil
+        end
         
+    end
+
 end

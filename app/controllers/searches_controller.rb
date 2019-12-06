@@ -191,6 +191,7 @@ class SearchesController < ApplicationController
             flash[:notice] = "Line Item Already Exists"
             redirect_to :controller => 'searches', :action => 'index'
         end
+        byebug
     end
     def det_update
       @temp=User.find(params[:uin])

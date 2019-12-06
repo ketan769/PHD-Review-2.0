@@ -13,7 +13,6 @@ gem 'rails', '~> 5.0.7', '>= 5.0.7.2'
 gem 'pg'
 gem 'bcrypt', '~>3.1.11'
 
-gem 'popper_js','~> 1.12.9'
 gem "bootstrap_form", "~> 4.0"
 gem "bootstrap-sass", "~> 3.4.1"
 # # Use Puma as the app server
