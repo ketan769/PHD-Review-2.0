@@ -47,6 +47,7 @@ group :development, :test do
   gem 'better_errors', '~> 2.4'
   gem 'rspec-rails'
   gem 'rails-controller-testing'
+  gem 'simplecov', :require => false 
 end
 
 group :development do

@@ -8,8 +8,8 @@ class SearchesController < ApplicationController
     
     def new
         check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
-        if(check[0]=='S')
-            redirect_to search_path(check,:uin =>session[:user])
+        if(check[0]=='S' or check[0]=='Student')
+           redirect_to studet_path(check,:uin =>session[:user]) and return
         end
         session[:uin]=nil
         session[:review_year]=nil
@@ -20,9 +20,10 @@ class SearchesController < ApplicationController
 
     def index
         check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
-        if(check[0]=='S')
-            redirect_to search_path(check,:uin =>session[:user]) and return
+        if(check[0]=='S' or check[0]=='Student' )
+            redirect_to studet_path(check,:uin =>session[:user]) and return
         end
+        
         if params[:first_name]!=nil and params[:last_name]!=nil  
             params[:first_name]=params[:first_name].delete(' ')
             params[:first_name]=params[:first_name].upcase
@@ -44,19 +45,15 @@ class SearchesController < ApplicationController
         if session[:first_name]!=nil
             params[:first_name]=session[:first_name]
         end
-
-        
         if session[:last_name]!=nil
             params[:last_name]=session[:last_name]
         end
-        
         if params[:uin]!=""
             @temp=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
         else
             temp=User.pluck(:uin)
             @temp=Review.rev_func(temp).select('DISTINCT ON (reviews.user_id,reviews.year) *')
         end
-        
         if params[:first_name]!=""
             temp=User.where(:first_name =>params[:first_name]).pluck(:uin)
             @temp=@temp.where(:user_id =>temp)
@@ -69,11 +66,11 @@ class SearchesController < ApplicationController
             @temp=@temp.where(:year =>params[:review_year])
         end
         check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
-        if(check[0]=='F')
+        
+        if(check[0]=='Faculty' or check[0]=='F' )
             temp=User.where(:advisor =>session[:user]).pluck(:uin)
             @temp=@temp.where(:user =>temp)
         end
-
         if @temp==[]
             flash[:notice] = "No record found"
             render '/searches/new'    
@@ -91,6 +88,7 @@ class SearchesController < ApplicationController
 
     def show
       @detail=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *').limit(1)
+      @revs=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
       temp=@detail.pluck(:user_id)
       temp2=User.where(:uin => temp[0]).pluck(:advisor)
       temp3=User.where(:uin => temp2[0]).pluck(:first_name)
@@ -113,12 +111,14 @@ class SearchesController < ApplicationController
                 temp1.append(i) 
             end
         end
-        session[:chk]=temp1
+        @temp2=temp1
+        session[:chk]=@temp2
+    
     end
     
     def add_user
         flash.clear
-        temp=Auth.where(:role => "F").pluck(:username)
+        temp=Auth.where(:role =>"Faculty").pluck(:username)
         tempf=User.where(:uin => temp).pluck(:first_name)
         templ=User.where(:uin => temp).pluck(:last_name)
         temps=['No Selection']
@@ -126,7 +126,6 @@ class SearchesController < ApplicationController
             temps.append(i+' '+j)
         end
         @temp21=temps
-        
     end
     
     def user_create
@@ -164,6 +163,21 @@ class SearchesController < ApplicationController
         render '/searches/new'  
     end
     
+    def studet
+      @detail=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *').limit(1)
+      @revs=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
+      temp=@detail.pluck(:user_id)
+      temp2=User.where(:uin => temp[0]).pluck(:advisor)
+      temp3=User.where(:uin => temp2[0]).pluck(:first_name)
+      temp4=User.where(:uin => temp2[0]).pluck(:last_name)
+      if temp3!=[] and temp4!=[]
+        temp5=temp3[0]+' '+temp4[0]
+        @tempad=temp5
+      else 
+          @tempad=""
+      end
+    end
+    
     def add_item
     end
     
@@ -181,7 +195,7 @@ class SearchesController < ApplicationController
     def det_update
       @temp=User.find(params[:uin])
       @temp.update_attributes!(:first_name =>params[:first_name],:last_name =>params[:last_name],:start_semester => params[:start_semester],
-                                :cumul_gpa =>params[:cumul_gpa],:advisor => params[:advisor],:degree_plan_date =>params[:degree_plan_date],
+                                :cumul_gpa =>params[:cumul_gpa],:degree_plan_date =>params[:degree_plan_date],
                                 :prelim_date => params[:prelim_date],:proposal_date => params[:proposal_date] , :final_exam_defence_date =>params[:final_exam_defence_date])
       flash[:notice] = "Updated"
       redirect_to :controller => 'searches', :action => 'index'        
@@ -193,7 +207,6 @@ class SearchesController < ApplicationController
         session[:dyear]=nil
         tempd3=session[:chk]
         k=0
-        
         tempd1.zip(tempd2).each do |i,j|
             if tempd3[k]=='off'
                 k=k+1
@@ -210,7 +223,6 @@ class SearchesController < ApplicationController
                 k=k+1
             end
         end
-        
         redirect_to :controller => 'searches', :action => 'index'       
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191203143256) do
+ActiveRecord::Schema.define(version: 20191206010348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20191203143256) do
     t.integer  "review_id"
     t.bigint   "user_id"
     t.integer  "year"
-    t.integer  "review_score"
+    t.string   "review_score"
     t.string   "notes"
     t.string   "reviewer"
     t.string   "comments_for_faculty"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20191203143256) do
     t.string   "major"
     t.string   "degree"
     t.string   "review_year"
-    t.integer  "cumul_gpa"
+    t.decimal  "cumul_gpa"
     t.date     "degree_plan_date"
     t.date     "qual_exam_date"
     t.string   "qual_exam_result"
