@@ -12,9 +12,9 @@ gem 'rails', '~> 5.0.7', '>= 5.0.7.2'
 # gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
 gem 'pg'
 gem 'bcrypt', '~>3.1.11'
-gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+
 gem "bootstrap_form", "~> 4.0"
-gem "bootstrap-sass", "~> 3.4.1"
+gem "bootstrap-sass", "~> 3.1.1.1"
 # # Use Puma as the app server
 # gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
