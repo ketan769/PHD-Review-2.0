@@ -10,3 +10,4 @@ class Review < ApplicationRecord
      return @rev
   end
 end
+

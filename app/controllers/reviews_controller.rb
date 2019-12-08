@@ -33,7 +33,7 @@ class ReviewsController < ApplicationController
     end
     
     def update
-      
+      byebug
       @review = Review.find params[:id]
       @review.update_attributes!(review_params)
       temp3=User.where(:uin => session[:user]).pluck(:first_name)

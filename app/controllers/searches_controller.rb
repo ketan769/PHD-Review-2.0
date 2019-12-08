@@ -191,8 +191,8 @@ class SearchesController < ApplicationController
             flash[:notice] = "Line Item Already Exists"
             redirect_to :controller => 'searches', :action => 'index'
         end
-        byebug
     end
+    
     def det_update
       @temp=User.find(params[:uin])
       @temp.update_attributes!(:first_name =>params[:first_name],:last_name =>params[:last_name],:start_semester => params[:start_semester],
@@ -201,6 +201,7 @@ class SearchesController < ApplicationController
       flash[:notice] = "Updated"
       redirect_to :controller => 'searches', :action => 'index'        
     end
+    
     def date_update
         tempd1=session[:duin]
         session[:duin]=nil
@@ -224,6 +225,7 @@ class SearchesController < ApplicationController
                 k=k+1
             end
         end
+        flash[:notice] = "Updated"
         redirect_to :controller => 'searches', :action => 'index'       
     end
 end
