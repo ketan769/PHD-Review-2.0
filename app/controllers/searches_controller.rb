@@ -218,7 +218,8 @@ class SearchesController < ApplicationController
       end
       send_data(@document.decision_let,
                 type: @document.content_type,
-                filename: @document.filename)
+                filename: @document.filename,
+                :disposition => 'inline')
     end
         
     def savepd
