@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   
     def review_params
-        params.require(:review).permit(:user,:review_year,:review_score, :comments_for_student, :comments_for_student, :notes)
+        params.require(:review).permit(:user,:review_year,:review_score, :comments_for_student, :comments_for_faculty, :notes)
     end
     def index
         if params[:format]==nil or params[:format]==""
@@ -33,7 +33,7 @@ class ReviewsController < ApplicationController
     end
     
     def update
-      
+
       @review = Review.find params[:id]
       @review.update_attributes!(review_params)
       temp3=User.where(:uin => session[:user]).pluck(:first_name)

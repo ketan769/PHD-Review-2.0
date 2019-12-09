@@ -4,7 +4,7 @@ class Search < ActiveRecord::Base
  # # def self.search_func (search)
  # #   if search[:uin]!=""
  # #     temp=Search.joins(:reviews).where(:uin => search[:uin]).distinct
- # #     # byebug
+ # #     
  # #   else
  # #     temp=Search
  # #   end
