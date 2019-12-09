@@ -2,7 +2,7 @@ class SearchesController < ApplicationController
 
     def search_params
         params.require(:user).permit(:uin, :first_name, :last_name, :review_year,:start_semester,:cumul_gpa,:advisor,:degree_plan_date,
-        :prelim_date,:proposal_date,:final_exam_defence_date,:cv,:student_report)
+        :prelim_date,:proposal_date,:final_exam_defence_date,:cv,:student_report,:cover)
     end
 
     
@@ -82,11 +82,21 @@ class SearchesController < ApplicationController
             session[:duin]=@temp.pluck(:user_id)
             session[:dyear]=@temp.pluck(:year)
             flash.clear
+            @tempk=""
             return @temp
         end
+        
     end
 
     def show
+      check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
+      if(check[0]=='S' or check[0]=='Student' )
+        redirect_to studet_path(check,:uin =>session[:user]) and return
+      end
+      if params[:uin] == nil
+         params[:uin] = session[:pdf_user]
+      end
+      
       @detail=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *').limit(1)
       @revs=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
       temp=@detail.pluck(:user_id)
@@ -99,6 +109,7 @@ class SearchesController < ApplicationController
       else 
           @tempad=""
       end
+      session[:pdf_user]= params[:uin]
     end
     
     def date
@@ -176,6 +187,51 @@ class SearchesController < ApplicationController
       else 
           @tempad=""
       end
+      session[:pdf_user]= params[:uin]
+      
+    end
+    
+    def doc_up
+      @document1=User.find_by(:uin =>session[:pdf_user])
+      @temp5=@document1.fielname   
+      @temp6=@document1.fieldname
+      @temp4=""
+    end
+    
+    def savepd2
+        User.savepdf2(params,session[:pdf_user])
+        redirect_to '/doc_up'        
+    end
+    
+    def savepd3
+        Review.savepdf(params)
+        flash[:notice] = "Decision Letter uploaded for #{params[:tempid]}"
+        redirect_to '/searches'
+    end
+    
+    def view_letter
+       
+      @document=Review.find_by(:user_id =>params[:uin_let],:year => params[:year_let])    
+      if @document.decision_let == nil
+          flash[:notice] = "Decision Not available"
+          redirect_to "/searches/show" and return     
+      end
+      send_data(@document.decision_let,
+                type: @document.content_type,
+                filename: @document.filename)
+    end
+        
+    def savepd
+        User.savepdf(params,session[:pdf_user])
+        redirect_to '/doc_up'        
+    end
+
+    
+    def showpdf
+      @document=User.find_by(:uin => session[:pdf_user])    
+      send_data(@document.decision_let,
+                type: @document.content_type,
+                filename: @document.fielname)
     end
     
     def add_item

@@ -5,6 +5,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">PHD REVIEW SYSTEM</a>
 </div>
+
 <p id=”notice”><%= notice %></p>    
 
 <div class="page-header">
@@ -80,7 +81,14 @@
             <td><%= rev.user[:prelim_date] %></td>
             <td><%= rev.user[:proposal_date] %></td>
             <td><%= rev.user[:final_exam_defence_date] %></td>
-            <td><input type="file" name="fileupload" value="fileupload" id="fileupload"> <label for="fileupload"> Select a file to upload</label> <input type="submit" value="submit"></td>
+            <td>
+               <%= form_for @tempk,url:{ :action => "savepd3"} do |f| %>
+                    <%= f.hidden_field :tempid, :value =>rev.user[:uin] %>
+                    <%= f.hidden_field :tempid2, :value =>rev[:year] %>
+                    <%= f.file_field :cover%>
+                    <%= f.submit%>
+                <%end%>
+            </td>
          </tr>
          <%end %>
       </table>
@@ -88,6 +96,5 @@
 </form>   
       <%= link_to 'Back', '/searches/new' %>
       <%= link_to 'add_item', add_item_path() %>
-      
    </body>
 </html>

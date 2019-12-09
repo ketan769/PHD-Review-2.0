@@ -280,6 +280,19 @@
         null,
         0,
         null,
+        1,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
         null,
         null,
         1,
@@ -376,6 +389,23 @@
         null,
         1,
         1,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        0,
+        null,
         null
       ],
       "/home/ec2-user/environment/demo/app/uploaders/decision_letter_uploader.rb": [
@@ -557,6 +587,6 @@
         0
       ]
     },
-    "timestamp": 1575700288
+    "timestamp": 1575866612
   }
 }
