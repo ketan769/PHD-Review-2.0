@@ -45,12 +45,12 @@
     
             <div class="form-group col-md-4">
               <label for="start_semester">Start Semester</label>
-              <input type="text" class="form-control" name="start_semester" value="<%=rev.user[:start_semester]%>" readonly>
+              <input type="text" class="form-control" name="start_semester" value="<%=rev.user[:start_semester]%>" >
             </div>
               
             <div class="form-group col-md-4">
               <label for="cumul_gpa">Cumulative GPA</label>
-              <input type="number" step="0.01" min="0" max="4" class="form-control" name="cumul_gpa" value="<%=rev.user[:cumul_gpa]%>" readonly >
+              <input type="number" step="0.01" min="0" max="4" class="form-control" name="cumul_gpa" value="<%=rev.user[:cumul_gpa]%>" >
             </div>
               
             <div class="form-group col-md-4">
@@ -62,24 +62,24 @@
   
             <div class="form-group col-md-6">
               <label for="degree_plan_date">Degree Plan Date</label>
-              <input type="date" class="form-control" name="degree_plan_date" value="<%=rev.user[:degree_plan_date]%>" readonly >
+              <input type="date" class="form-control" name="degree_plan_date" value="<%=rev.user[:degree_plan_date]%>">
             </div>
           
             <div class="form-group col-md-6">
               <label for="prelim_date">Prelim Date</label>
-              <input type="date" class="form-control" name="prelim_date"  value="<%=rev.user[:prelim_date]%>" readonly>
+              <input type="date" class="form-control" name="prelim_date"  value="<%=rev.user[:prelim_date]%>" >
             </div>
           
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
               <label for="proposal_date">Proposal Date</label>
-              <input type="date" class="form-control" name="proposal_date"  value="<%=rev.user[:proposal_date]%>" readonly>
+              <input type="date" class="form-control" name="proposal_date"  value="<%=rev.user[:proposal_date]%>">
             </div>  
             
             <div class="form-group col-md-6">
               <label for="final_exam_defence_date">Final Exam Defence Date</label>
-              <input type="date" class="form-control" name="final_exam_defence_date"  value="<%=rev.user[:final_exam_defence_date]%>" readonly>
+              <input type="date" class="form-control" name="final_exam_defence_date"  value="<%=rev.user[:final_exam_defence_date]%>">
             </div>
             </div>
     <button type="submit" class="btn btn-primary">Save</button>
@@ -95,12 +95,12 @@
             <div class="form-row">
             <div class="form-group col-md-6">
               <label for="review_year">Review Year</label>
-              <input type="text" class="form-control" name="review_year" value="<%= rev[:year] %>" readonly>
+              <input type="text" class="form-control" name="review_year" value="<%= rev[:year] %>" >
             </div>
             
             <div class="form-group col-md-6">
               <label for="review_decision">Decision</label>
-              <input type="text" class="form-control" name="review_decision" value="<%= rev[:review_score] %>" readonly>
+              <input type="text" class="form-control" name="review_decision" value="<%= rev[:review_score] %>" >
             </div>
             
             <div class="form-group col-md-6">
