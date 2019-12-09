@@ -15,6 +15,12 @@ Rails.application.routes.draw do
    get 'date' ,to: 'searches#date'
    get 'date_update' ,to: 'searches#date_update'
    get 'studet' ,to: 'searches#studet'
+   post 'savepd' ,to: 'searches#savepd'
+   get 'showpdf' ,to: 'searches#showpdf'
+   get 'doc_up' ,to: 'searches#doc_up'
+   post 'savepd2' ,to: 'searches#savepd2'
+   post 'savepd3' ,to: 'searches#savepd3'
+   get 'view_letter' ,to: 'searches#view_letter'
    resources :reviews
 end
 

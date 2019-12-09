@@ -7,7 +7,10 @@
   </button>
 </nav>
 <div class="container">
+<p id=”notice”><%= notice %></p>    
 <head>
+ 
+  <form action ="/doc_up"><button  class="btn btn-primary"  style="float: right;">Document Upload</button></button></form>
   <title>PHD-Review-TAMU</title>
 </head>
 
@@ -20,7 +23,7 @@
 <%@detail.each do |rev| %>
 <bootstrap_form_for  >
 
-    <form action ="/det_update">
+    <form action ="/det_update" >
         <div class='form-row'>
             
             <div class="form-group col-md-4">
@@ -30,7 +33,7 @@
             
             <div class="form-group col-md-4">
               <label for="first_name">First Name</label>
-              <input type="text" class="form-control" name="first_name"  value = "<%=rev.user[:first_name]%>" >
+              <input type="text" class="form-control" name="first_name"  value = "<%=rev.user[:first_name]%>"  >
             </div>
             
             <div class="form-group col-md-4">
@@ -59,12 +62,12 @@
   
             <div class="form-group col-md-6">
               <label for="degree_plan_date">Degree Plan Date</label>
-              <input type="date" class="form-control" name="degree_plan_date" value="<%=rev.user[:degree_plan_date]%>" >
+              <input type="date" class="form-control" name="degree_plan_date" value="<%=rev.user[:degree_plan_date]%>">
             </div>
           
             <div class="form-group col-md-6">
               <label for="prelim_date">Prelim Date</label>
-              <input type="date" class="form-control" name="prelim_date"  value="<%=rev.user[:prelim_date]%>">
+              <input type="date" class="form-control" name="prelim_date"  value="<%=rev.user[:prelim_date]%>" >
             </div>
           
         </div>
@@ -78,40 +81,47 @@
               <label for="final_exam_defence_date">Final Exam Defence Date</label>
               <input type="date" class="form-control" name="final_exam_defence_date"  value="<%=rev.user[:final_exam_defence_date]%>">
             </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="sr">Student Report</label>
-              <input type="text" class="form-control" name="student_report">
             </div>
-            
-            <div class="form-group col-md-6">
-              <label for="cv">CV</label>
-              <input type="text" class="form-control" name="cv">
-            </div>
-        </div>
-           <% @revs.each do |rev| %>
+    <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+     
+
+  <div class="page-header">
+    </br>
+    <h1>Decisions</h1>
+</div>
+
+        <% @revs.each do |rev| %>
             <div class="form-row">
             <div class="form-group col-md-6">
               <label for="review_year">Review Year</label>
-              <input type="text" class="form-control" name="review_year" value="<%= rev[:year] %>" readonly>
+              <input type="text" class="form-control" name="review_year" value="<%= rev[:year] %>" >
             </div>
             
             <div class="form-group col-md-6">
               <label for="review_decision">Decision</label>
-              <input type="text" class="form-control" name="review_decision" value="<%= rev[:review_score] %>" readonly>
+              <input type="text" class="form-control" name="review_decision" value="<%= rev[:review_score] %>" >
             </div>
+            
+            <div class="form-group col-md-6">
+              <label for="review_decision">Decision</label>
+               <form action="/view_letter">
+                 <input type="hidden" name ="uin_let" value ="<%= rev.user[:uin] %>">
+                 <input type="hidden" name ="year_let" value ="<%= rev[:year] %>">
+                 <button type ="submit" >View Letter</button>
+                 
+                 </form>
+            </div>
+            
         </div>
         <% end %>
+        </div>
         </br>
         <div class="form-row">
             <div class="form-group col-md-1">
               <form action="/searches"><button class="btn btn-primary">Back</button></form>
             </div>
-            
-            <div class="form-group col-md-1 offset-md-10">
-              <button type="submit" class="btn btn-primary">Save</button>
-            </div>
+    
         </div>
     </form>
     

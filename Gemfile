@@ -14,7 +14,7 @@ gem 'pg'
 gem 'bcrypt', '~>3.1.11'
 
 gem "bootstrap_form", "~> 4.0"
-gem "bootstrap-sass", "~> 3.1.1.1"
+gem "bootstrap-sass", "~> 3.4.1"
 # # Use Puma as the app server
 # gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -48,6 +48,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'simplecov', :require => false 
+  gem 'database_cleaner'
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels'
+  
 end
 
 group :development do
@@ -55,6 +59,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'byebug'
+  gem 'capybara', '2.4.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

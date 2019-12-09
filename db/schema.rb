@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191206010348) do
+ActiveRecord::Schema.define(version: 20191209071643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,10 @@ ActiveRecord::Schema.define(version: 20191206010348) do
     t.datetime "updated_at",                       null: false
     t.string   "decision_letter"
     t.date     "review_release_date"
+    t.binary   "decision_let"
+    t.string   "content_type"
+    t.string   "file_contents"
+    t.string   "filename"
   end
 
   create_table "searches", id: false, force: :cascade do |t|
@@ -94,6 +98,13 @@ ActiveRecord::Schema.define(version: 20191206010348) do
     t.string   "advisor"
     t.string   "start_semester"
     t.string   "decision_letter"
+    t.string   "fielname"
+    t.string   "content_type"
+    t.string   "file_contents"
+    t.binary   "decision_let"
+    t.binary   "sturep"
+    t.string   "content_typesr"
+    t.string   "file_contentsr"
   end
 
 end
