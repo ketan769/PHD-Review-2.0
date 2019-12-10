@@ -3,9 +3,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-   
    @auth = Auth.find_by(username: params[:username])
-   if @auth && @auth.authenticate(params[:password])
+   if(params[:password] == "")
+       flash[:alert] = "Please create a password before logging in by clicking on Change Password?"
+       redirect_to '/login'
+   elsif @auth && @auth.authenticate(params[:password])
       session.clear
       session[:auth_id] = @auth.id
       session[:user] = params[:username]
