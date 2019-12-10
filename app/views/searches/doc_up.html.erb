@@ -26,19 +26,19 @@
 
 <div class="container">
         <div class='form-row'>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
               <label for="uin">CV</label>
             <%= form_for @temp4,url:{ :action => "savepd"} do |f| %>
                  <div class="form-group col-md-6">
                     <%= f.file_field :cover%>
                     <%= f.submit%>
-                     <%=link_to @temp5, '/showpdf' if @temp5 != nil? %>
+                     <%=link_to @temp5, 'View CV' if @temp5 != nil? %>
                   </div>
                 <%end%>
 
             </div>
             
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-6">
               <label for="last_name">Student Report</label>
                <%= form_for @temp4,url:{ :action => "savepd2"} do |f| %>
                  <div class="form-group col-md-6">
