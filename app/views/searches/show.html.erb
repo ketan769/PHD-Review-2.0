@@ -3,9 +3,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">PHD REVIEW SYSTEM</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <span class="navbar-toggler-icon"></span>
   </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+    <form action ="/login"><button   class="btn btn-secondary"  style="float: right;">Log Out</button></form>
+  </div>
 </nav>
+
+
 <div class="container">
 <p id=”notice”><%= notice %></p>    
 <head>
@@ -21,7 +26,7 @@
 
 <div class="container">
 <%@detail.each do |rev| %>
-<bootstrap_form_for  >
+<bootstrap_form_for rev>
 
     <form action ="/det_update" >
         <div class='form-row'>
@@ -92,35 +97,39 @@
 </div>
 
         <% @revs.each do |rev| %>
-            <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="review_year">Review Year</label>
-              <input type="text" class="form-control" name="review_year" value="<%= rev[:year] %>" >
+            <div class="row">
+            <div class="col-md-4">
+            <div class="bs-component">
+              <h4>Review Year</h4>
+              <p><%= rev[:year] %></p>
+            </div>
             </div>
             
-            <div class="form-group col-md-6">
-              <label for="review_decision">Decision</label>
-              <input type="text" class="form-control" name="review_decision" value="<%= rev[:review_score] %>" >
+            <div class="col-md-4">
+            <div class="bs-component">
+              <h4>Review Score</h4>
+              <p><%= rev[:review_score] %></p>
+            </div>
             </div>
             
-            <div class="form-group col-md-6">
-              <label for="review_decision">Decision</label>
-               <form action="/view_letter">
+            <div class="col-md-4">
+            <div class="bs-component">
+              <h4>Decision Letter</h4>
+              <form action="/view_letter">
                  <input type="hidden" name ="uin_let" value ="<%= rev.user[:uin] %>">
                  <input type="hidden" name ="year_let" value ="<%= rev[:year] %>">
-                 <button type ="submit" >View Letter</button>
-                 
-                 </form>
+                 <button type ="submit" class="btn btn-outline-primary">View Decision Letter</button>
+              </form>
             </div>
-            
+            </div>
+        
         </div>
+        <hr class="my-4">
         <% end %>
-        </div>
         </br>
-        <div class="form-row">
-            <div class="form-group col-md-1">
+
               <form action="/searches"><button class="btn btn-primary">Back</button></form>
-            </div>
+
     
         </div>
     </form>
