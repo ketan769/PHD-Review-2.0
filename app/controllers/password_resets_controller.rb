@@ -2,10 +2,15 @@ class PasswordResetsController < ApplicationController
   def new
   end
   def create
-  auth= Auth.find_by(email: params[:email])
-  auth.send_password_reset if auth
-  flash[:alert] = "Password reset link sent"
-  redirect_to '/login'
+    auth= Auth.find_by(email: params[:email])
+    if auth
+      auth.send_password_reset
+      flash[:alert] = "Password reset link sent"
+      redirect_to '/login'
+    else
+      flash[:alert] = "Invalid Email!"
+      redirect_to '/login'
+    end
   end
   
   def edit
