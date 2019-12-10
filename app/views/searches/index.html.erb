@@ -82,13 +82,15 @@
             <td><%= rev.user[:proposal_date] %></td>
             <td><%= rev.user[:final_exam_defence_date] %></td>
             <td>
-               <%= form_for @tempk,url:{ :action => "savepd3"} do |f| %>
-                    <%= f.hidden_field :tempid, :value =>rev.user[:uin] %>
-                    <%= f.hidden_field :tempid2, :value =>rev[:year] %>
+               <%=form_for @tempk,url:{:action => "savepd3"},id:"pdfsubmit" do |f| %>
+                    <%= f.hidden_field :tempid,:value =>rev.user[:uin] %>
+                    <%= f.hidden_field :tempid2,:value =>rev[:year] %>
                     <%= f.file_field :cover%>
                     <%= f.submit%>
-                <%end%>
+                <%end%>    
+
             </td>
+
          </tr>
          <%end %>
       </table>
