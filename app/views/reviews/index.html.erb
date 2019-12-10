@@ -1,0 +1,75 @@
+
+<html>
+<link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css" integrity="" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">PHD REVIEW SYSTEM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+    <form action ="/login"><button   class="btn btn-secondary"  style="float: right;">Log Out</button></form>
+  </div>
+</nav>
+
+
+
+<p id=”notice”><%= notice %></p>    
+
+<div class="page-header">
+<h1>Searched Items</h1>
+</div>
+<head>
+      <title>PHD-Review-TAMU</title>
+   </head>
+	
+   <body>
+
+      <table id='Mytable' border = "1" bordercolor = "green" width=100% style='font-size:70%' class="table table-hover"> 
+         <tr class="table-warning">
+            <th>UIN</th>
+            <th>First-Name</th>
+            <th>Last-Name</th>
+            <th>Year</th>
+            <th>Review</th>
+            <th>Current Degree</th>
+            <th>Start Semester</th>
+            <th>GPR Cumulative</th>
+            <th>Degree Plan Date</th>
+            <th>Qual Exam Date</th>
+            <th>Qual Exam Result</th>
+            <th>Prelim Date</th>
+            <th>Proposal Date</th>
+            <th>Final Exam Defense Date</th>
+            <th>Decision Letter</th>
+         </tr>
+         <% @temp.each do |rev| %>
+         <tr>
+            <td><%=link_to(rev.user[:uin],search_path(rev,:uin =>rev.user[:uin],:review_year=>rev[:year])) %></td>
+            <td><%= rev.user[:first_name]%></td>
+            <td><%= rev.user[:last_name] %></td>
+            <td><%= rev[:year]%></td>
+            <td><%= link_to '<button type="button">view</button>'.html_safe, review_path(rev) %></td>
+            <td><%= rev.user[:degree] %></td>
+            <td><%= rev.user[:start_semester] %></td>
+            <td><%= rev.user[:cumul_gpa]%></td>
+            <td><%= rev.user[:degree_plan_date] %></td>
+            <td><%= rev.user[:qual_exam_date] %></td>
+            <td><%= rev.user[:qual_exam_result] %></td>
+            <td><%= rev.user[:prelim_date] %></td>
+            <td><%= rev.user[:proposal_date] %></td>
+            <td><%= rev.user[:final_exam_defence_date] %></td>
+            <td>
+               <%= form_for @tempk,url:{ :action => "savepd3"} do |f| %>
+                    <%= f.hidden_field :tempid, :value =>rev.user[:uin] %>
+                    <%= f.hidden_field :tempid2, :value =>rev[:year] %>
+                    <%= f.file_field :cover%>
+                    <%= f.submit%>
+                <%end%>
+            </td>
+         <%end %>
+      </table>
+
+<%= link_to 'Back', new_search_path %>
+
+   </body>
+</html>

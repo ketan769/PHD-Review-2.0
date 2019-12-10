@@ -3,15 +3,103 @@ class ReviewsController < ApplicationController
     def review_params
         params.require(:review).permit(:user,:review_year,:review_score, :comments_for_student, :comments_for_faculty, :notes)
     end
-    # def index
-    #     if params[:format]==nil or params[:format]==""
-    #       params[:format]=session[:format]
-    #     end
-    #     temp=params[:format].match(/(\w+)(\/)(\w+)/)
-    #     session[:format]=params[:format]
-    #     @reviews = Review.rev_func(temp[3]).where(:year =>temp[1])
+    def index
+        check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
+        if(check[0]=='S' or check[0]=='Student' )
+            redirect_to studet_path(check,:uin =>session[:user]) and return
+        end
         
-    # end
+        if params[:first_name]!=nil and params[:last_name]!=nil  
+            params[:first_name]=params[:first_name].delete(' ')
+            params[:first_name]=params[:first_name].upcase
+            params[:last_name]=params[:last_name].delete(' ')
+            params[:last_name]=params[:last_name].upcase
+        end
+
+        
+        if session[:uin]!=nil
+            params[:uin]=session[:uin]
+        end
+
+        
+        if session[:review_year]!=nil
+            params[:review_year]=session[:review_year]
+        end
+
+        
+        if session[:first_name]!=nil
+            params[:first_name]=session[:first_name]
+        end
+        if session[:last_name]!=nil
+            params[:last_name]=session[:last_name]
+        end
+        if params[:uin]!=""
+            @temp=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
+            check=Auth.where(:username =>params[:uin]).select('DISTINCT ON (username) *').pluck(:role)
+            if check[0] == "F"
+                @temp = null
+            end
+        else
+            temp=User.pluck(:uin)
+            check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
+            check.each{ |x|
+                if(x == "F" or x == "Faculty")
+                    temp.delete_at(check.index(x))
+                end
+            }
+            @temp=Review.rev_func(temp).select('DISTINCT ON (reviews.user_id,reviews.year) *')
+        end
+        if params[:first_name]!=""
+            temp=User.where(:first_name =>params[:first_name]).pluck(:uin)
+            check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
+            check.each{ |x|
+                if(x == "F" or x == "Faculty")
+                    temp.delete_at(check.index(x))
+                end
+            }
+            @temp=@temp.where(:user_id =>temp)
+        end
+        if params[:last_name]!=""
+             temp=User.where(:last_name =>params[:last_name]).pluck(:uin)
+             check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
+             check.each{ |x|
+                if(x == "F" or x == "Faculty")
+                    temp.delete_at(check.index(x))
+                end
+            }
+             @temp=@temp.where(:user =>temp)
+        end
+        if params[:review_year]!=""
+            @temp=@temp.where(:year =>params[:review_year])
+        end
+        check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
+        
+        if(check[0]=='Faculty' or check[0]=='F' )
+            temp=User.where(:advisor =>session[:user]).pluck(:uin)
+            @temp=@temp.where(:user =>temp)
+        end
+        if @temp==[]
+            flash[:notice] = "No record found"
+            render '/searches/new'    
+        else
+            session[:uin]=params[:uin]
+            session[:review_year]=params[:review_year]
+            session[:first_name]=params[:first_name]
+            session[:last_name]=params[:last_name]
+            session[:duin]=@temp.pluck(:user_id)
+            session[:dyear]=@temp.pluck(:year)
+            flash.clear
+            @tempk=""
+            return @temp
+        end
+        
+    end
+    
+    def savepd3
+        Review.savepdf(params)
+        flash[:notice] = "Decision Letter uploaded for #{params[:tempid]}"
+        redirect_to '/searches'
+    end
     
     def new
         @review = Review.new
