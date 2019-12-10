@@ -2,8 +2,8 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
-users= [{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi',:review_year =>2018,:gender => "Male",:cumul_gpa => 4.0 ,:degree_plan_date => "2019-11-12T19:30",:qual_exam_result => 'Pass',:qual_exam_date =>'2019-11-13'},
-          {:uin =>327010110, :first_name => 'ABC', :last_name=> 'DEF',:review_year =>2019,:gender => "Female",:cumul_gpa => 4.0 ,:degree_plan_date => "2019-11-12T19:30",:qual_exam_result => 'Fail',:qual_exam_date =>'2019-11-13'}]
+users= [{:uin => 327005544, :first_name => 'Ketan', :last_name=> 'sethi',:review_year =>2018,:gender => "Male",:cumul_gpa => 4.0 ,:degree_plan_date => "2019-11-13",:qual_exam_result => 'Pass',:qual_exam_date =>'2019-11-13'},
+          {:uin =>327010110, :first_name => 'ABC', :last_name=> 'DEF',:review_year =>2019,:gender => "Female",:cumul_gpa => 4.0 ,:degree_plan_date => "2019-11-13",:qual_exam_result => 'Fail',:qual_exam_date =>'2019-11-13'}]
 users.each do |ser|
   User.create!(ser)
 end
@@ -24,6 +24,7 @@ auths= [{:username =>123, :password=>'abc', :email=>'dola16shaw@gmail.com',:role
         {:username =>327005544, :password=> 'k', :email=> 'k',:role =>"A"},
         {:username =>327010110, :password=> 's', :email=> 'k',:role =>"S"},
           {:username =>327, :password=> 'def', :email=> 'DEF',:role =>"S"}]
+
 auths.each do |ser|
 Auth.create!(ser)
 end

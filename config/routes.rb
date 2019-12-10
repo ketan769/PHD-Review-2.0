@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :searches
    root "sessions#new"
+   get 'separate_review', to: 'searches#separate_review'  
    get 'add_user', to: 'searches#add_user'
    get 'user_create', to: 'searches#user_create'
    get 'add_item' ,to: 'searches#add_item'

@@ -238,6 +238,9 @@ class SearchesController < ApplicationController
     def add_item
     end
     
+    def separate_review
+    end
+    
     def item_create
         temp1=Review.rev_func(params[:uin]).where(:year => params[:review_year]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
         if temp1==[]
