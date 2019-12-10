@@ -3,15 +3,15 @@ class ReviewsController < ApplicationController
     def review_params
         params.require(:review).permit(:user,:review_year,:review_score, :comments_for_student, :comments_for_faculty, :notes)
     end
-    def index
-        if params[:format]==nil or params[:format]==""
-          params[:format]=session[:format]
-        end
-        temp=params[:format].match(/(\w+)(\/)(\w+)/)
-        session[:format]=params[:format]
-        @reviews = Review.rev_func(temp[3]).where(:year =>temp[1])
+    # def index
+    #     if params[:format]==nil or params[:format]==""
+    #       params[:format]=session[:format]
+    #     end
+    #     temp=params[:format].match(/(\w+)(\/)(\w+)/)
+    #     session[:format]=params[:format]
+    #     @reviews = Review.rev_func(temp[3]).where(:year =>temp[1])
         
-    end
+    # end
     
     def new
         @review = Review.new
@@ -44,32 +44,21 @@ class ReviewsController < ApplicationController
         temp5=""
       end  
       @review.update_attributes!(:reviewer => temp5)
-      flash[:notice] = "review was updated successfully updated."
-      redirect_to '/reviews' and return
+      flash[:notice] = "Review was updated successfully."
+      redirect_to review_path(@review) and return
     end
     
-    def view_letter
-      @document=Review.find params[:id] 
-      if @document.decision_let == nil
+    def view_dec_letter
+      @review=Review.find_by(:user_id =>params[:uin_let],:year => params[:year_let])    
+      if @review.decision_let == nil
           flash[:notice] = "Decision Letter not available"
-          redirect_to "/reviews/index" and return     
+          redirect_to review_path(@review) and return     
       end
-      send_data(@document.decision_let,
-                type: @document.content_type,
-                filename: @document.filename,
+      send_data(@review.decision_let,
+                type: @review.content_type,
+                filename: @review.filename,
                 :disposition => 'inline')
     end
-       
-    #   @document=Review.find_by(:user_id =>params[:decision_let],:year => params[:year_let])    
-    #   if @document.decision_let == nil
-    #       flash[:notice] = "CV not available"
-    #       redirect_to "/reviews/index" and return     
-    #   end
-    #   send_data(@document.decision_let,
-    #             type: @document.content_type,
-    #             filename: @document.filename,
-    #             :disposition => 'inline')
-    # end
     
     def destroy
       @review = Review.find(params[:id])
