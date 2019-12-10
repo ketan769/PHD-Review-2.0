@@ -40,9 +40,10 @@
       <td><%= review.review_student_input_date %></td>
       <td><%= review.review_official_student_deadline %></td>
       <td><%= review.review_release_date %></td>
-      <td>Column content</td>
-      <!--<td><button type="button" class="btn btn-primary" onclick="openEditForm()">Edit</button></td>-->
-      
+      <td>
+      <%= button_to "View Decision Letter ", { :controller => "reviews", :action => "view_letter"} %>
+      </td>
+
       <td><%= link_to 'Edit', edit_review_path(review) %></td>
     </tr>
   <% end -%>

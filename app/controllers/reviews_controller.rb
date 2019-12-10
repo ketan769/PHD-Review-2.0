@@ -48,6 +48,29 @@ class ReviewsController < ApplicationController
       redirect_to '/reviews' and return
     end
     
+    def view_letter
+      @document=Review.find params[:id] 
+      if @document.decision_let == nil
+          flash[:notice] = "Decision Letter not available"
+          redirect_to "/reviews/index" and return     
+      end
+      send_data(@document.decision_let,
+                type: @document.content_type,
+                filename: @document.filename,
+                :disposition => 'inline')
+    end
+       
+    #   @document=Review.find_by(:user_id =>params[:decision_let],:year => params[:year_let])    
+    #   if @document.decision_let == nil
+    #       flash[:notice] = "CV not available"
+    #       redirect_to "/reviews/index" and return     
+    #   end
+    #   send_data(@document.decision_let,
+    #             type: @document.content_type,
+    #             filename: @document.filename,
+    #             :disposition => 'inline')
+    # end
+    
     def destroy
       @review = Review.find(params[:id])
       @review.destroy
