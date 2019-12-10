@@ -4,9 +4,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">PHD REVIEW SYSTEM</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <span class="navbar-toggler-icon"></span>
   </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+    <form action ="/login"><button   class="btn btn-secondary"  style="float: right;">Log Out</button></form>
+  </div>
 </nav>
+
+
 <div class="container">
 <p id=”notice”><%= notice %></p>    
 <div class="page-header">
@@ -21,12 +26,11 @@
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
       <th scope="col">Reviewer</th>
-      <th scope="col">IP Open Date</th>
-      <th scope="col">Review Input Deadline</th>
-      <th scope="col">Review Deadline</th>
+      <th scope="col">Review Input Date</th>
+      <th scope="col">Review Official Deadline</th>
       <th scope="col">Review Release Date</th>
       <th scope="col">Documents</th>
-      <th scope="col">Edit</th>
+      <th scope="col">Edit review</th>
     </tr>
   </thead>
   <tbody>
@@ -35,7 +39,6 @@
       <td><%= @review.user.first_name %></td>
       <td><%= @review.user.last_name %></td>
       <td><%= @review.reviewer %></td>
-      <td><%= @review.ip_open_date %></td>
       <td><%= @review.review_student_input_date %></td>
       <td><%= @review.review_official_student_deadline %></td>
       <td><%= @review.review_release_date %></td>
@@ -43,7 +46,7 @@
       <form action="/view_dec_letter">
         <input type="hidden" name ="uin_let" value ="<%= @review.user[:uin] %>">
         <input type="hidden" name ="year_let" value ="<%= @review[:year] %>">
-        <button type ="submit" >View Decision Letter</button>
+        <button type ="submit" class="btn btn-primary btn-sm">View Decision Letter</button>
       </form>
      </td>
 
