@@ -26,5 +26,6 @@ Rails.application.routes.draw do
    get 'view_cv' ,to: 'reviews#view_cv'
    post 'view_dec_letter' ,to: 'reviews#view_dec_letter'
    get 'view_dec_letter' ,to: 'reviews#view_dec_letter'
+   post 'savepd3' ,to: 'reviews#savepd3'
 end
 
