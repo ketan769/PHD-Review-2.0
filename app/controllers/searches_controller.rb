@@ -255,12 +255,6 @@ class SearchesController < ApplicationController
         redirect_to '/doc_up'        
     end
     
-    def savepd3
-        Review.savepdf(params)
-        flash[:notice] = "Decision Letter uploaded for #{params[:tempid]}"
-        redirect_to '/searches'
-    end
-    
     def view_letter
        
       @document=Review.find_by(:user_id =>params[:uin_let],:year => params[:year_let])    

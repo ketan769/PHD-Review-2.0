@@ -89,7 +89,7 @@ class ReviewsController < ApplicationController
             session[:duin]=@temp.pluck(:user_id)
             session[:dyear]=@temp.pluck(:year)
             flash.clear
-            @tempk=""
+            @tempj=""
             return @temp
         end
         

@@ -59,7 +59,7 @@
             <td><%= rev.user[:proposal_date] %></td>
             <td><%= rev.user[:final_exam_defence_date] %></td>
             <td>
-               <%= form_for @tempk,url:{ :action => "savepd3"} do |f| %>
+               <%= form_for @tempj,url:{ :action => "savepd3"} do |f| %>
                     <%= f.hidden_field :tempid, :value =>rev.user[:uin] %>
                     <%= f.hidden_field :tempid2, :value =>rev[:year] %>
                     <%= f.file_field :cover%>
