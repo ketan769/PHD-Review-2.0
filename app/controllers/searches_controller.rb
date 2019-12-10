@@ -219,7 +219,6 @@ class SearchesController < ApplicationController
         
         params[:advisor]=User.where(:first_name => temp[1] , :last_name => temp[2]).pluck(:uin)
         params[:advisor]=params[:advisor][0]
-        byebug
         Auth.create(:username => params[:uin],:role => params[:role],:password => params[:password],:email => params[:email])
         User.create(:uin => params[:uin],:first_name => params[:first_name],:last_name => params[:last_name],:review_year => params[:review_year],:advisor => params[:advisor])
         Review.create(:user_id => params[:uin],:year => params[:review_year])
