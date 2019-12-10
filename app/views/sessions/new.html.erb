@@ -1,10 +1,41 @@
+<html>
+
+<link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css" integrity="" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">PHD REVIEW SYSTEM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+
+
+<div class="container">
 <p id=”alert”><%= alert %></p>
-<h1>Login</h1>
-   <%= form_tag '/login' do %>
-   <%= label_tag :username%>
-   <%= number_field_tag :username %>
-   <%= label_tag :password%>
-   <%= password_field_tag :password%>
+
+<div class="jumbotron">
+  <h1 class="display-3"> <%= form_tag('/login', class: "form-group row") do %>Login</h1>
+  <hr class="my-4">
+       <div class="form-group row">
+      <label for="username" class="col-sm-2 col-form-label">Username</label>
+      <div class="col-sm-10">
+        <%= text_field_tag :username %>
+      </div>
+      </div>
+             <div class="form-group row">
+      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <%= password_field_tag :password%>
+      </div>
+      </div>
+   
    <%= submit_tag "Login"%>
+     <hr class="my-4">
+
 <p><%= link_to 'Change password?', '/password_resets/new' %></p>
 <%end%>
+
+</div>
+
+</div>
+
+</html>

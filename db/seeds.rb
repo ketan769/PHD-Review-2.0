@@ -8,9 +8,9 @@ users.each do |ser|
   User.create!(ser)
 end
 
-reviews= [{:review_id =>7891, :user_id =>327010110, :year =>2019,:review_score =>'IMP',:comments_for_faculty =>"Great",:review_official_student_deadline =>"2019-11-12T19:30",:review_open_date =>"2019-12-12",:ip_official_student_deadline =>'2019-12-13',:dp_official_student_deadline =>'2019-12-13'},
-          {:review_id =>7928, :user_id =>327005544, :year =>2019,:review_score =>'Sat',:comments_for_faculty =>"Bad",:review_official_student_deadline =>"2019-03-12",:review_open_date =>"2019-12-13",:ip_official_student_deadline =>'2019-12-13',:dp_official_student_deadline =>'2019-12-13'},
-          {:review_id =>7928, :user_id =>327005544, :year =>2018,:review_score =>'Gud',:comments_for_faculty =>"OK",:review_official_student_deadline =>"2019-11-13",:review_open_date =>"2019-12-13",:ip_official_student_deadline =>'2019-12-13',:dp_official_student_deadline =>'2019-12-13'}]
+reviews= [{:review_id =>7891, :user_id =>327010110, :year =>2019,:review_score =>'Needs improvement',:comments_for_faculty =>"Great",:review_official_student_deadline =>"2019-11-12T19:30",:review_open_date =>"2019-12-12",:ip_official_student_deadline =>'2019-12-13',:dp_official_student_deadline =>'2019-12-13'},
+          {:review_id =>7928, :user_id =>327005544, :year =>2019,:review_score =>'Unsatisfactory',:comments_for_faculty =>"Bad",:review_official_student_deadline =>"2019-03-12",:review_open_date =>"2019-12-13",:ip_official_student_deadline =>'2019-12-13',:dp_official_student_deadline =>'2019-12-13'},
+          {:review_id =>7928, :user_id =>327005544, :year =>2018,:review_score =>'Satisfactory',:comments_for_faculty =>"OK",:review_official_student_deadline =>"2019-11-13",:review_open_date =>"2019-12-13",:ip_official_student_deadline =>'2019-12-13',:dp_official_student_deadline =>'2019-12-13'}]
 
 # reviews= [{:review_id =>7891, :user_id =>327010110, :year =>2019,:review_score =>'IMP',:comments_for_faculty =>"Great",:review_official_student_deadline =>"2019-11-13",:review_open_date =>"2019-12-13", :reviewer => "HC",:ip_official_student_deadline =>'2019-12-13',:dp_official_student_deadline =>'2019-12-13'},
 #           {:review_id =>7928, :user_id =>327005544, :year =>2019,:review_score =>'Sat',:comments_for_faculty =>"Bad",:review_official_student_deadline =>"2019-11-13",:review_open_date =>"2019-12-13", :reviewer => "Hark",:ip_official_student_deadline =>'2019-12-13',:dp_official_student_deadline =>'2019-12-13'},

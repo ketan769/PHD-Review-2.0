@@ -21,6 +21,10 @@ Rails.application.routes.draw do
    post 'savepd2' ,to: 'searches#savepd2'
    post 'savepd3' ,to: 'searches#savepd3'
    get 'view_letter' ,to: 'searches#view_letter'
-   resources :reviews
+  resources :reviews
+   post 'view_cv' ,to: 'reviews#view_cv'
+   get 'view_cv' ,to: 'reviews#view_cv'
+   post 'view_dec_letter' ,to: 'reviews#view_dec_letter'
+   get 'view_dec_letter' ,to: 'reviews#view_dec_letter'
 end
 
