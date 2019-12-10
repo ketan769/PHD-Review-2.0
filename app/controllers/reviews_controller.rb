@@ -98,7 +98,7 @@ class ReviewsController < ApplicationController
     def savepd3
         Review.savepdf(params)
         flash[:notice] = "Decision Letter uploaded for #{params[:tempid]}"
-        redirect_to '/searches'
+        redirect_to '/reviews'
     end
     
     def new
