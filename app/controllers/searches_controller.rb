@@ -161,15 +161,45 @@ class SearchesController < ApplicationController
         @temp21=temps
     end
     
+    # def user_create
+    #     if params[:uin]=="" or params[:first_name]=="" or params[:last_name]=="" or params[:review_year]=="" or params[:email]=="" or  params[:password]==""  or  params[:c_password]==""   
+    #         flash[:notice] = "No field can be empty"
+    #         render '/searches/add_user' and return
+    #     end
+        
+    #     if params[:password]!=params[:c_password]
+    #         flash[:notice] = "Password and Confirm password Should Match"
+    #         render '/searches/add_user' and return 
+    #     end
+        
+    #     temp2=Review.rev_func(params[:uin])
+    #     if temp2!=[]
+    #         flash[:notice] = "User Already Exists"
+    #         render '/searches/new' and return
+    #     end
+    #     params[:uin]=params[:uin].delete(' ')
+    #     params[:first_name]=params[:first_name].delete(' ')
+    #     params[:first_name]=params[:first_name].upcase
+    #     params[:last_name]=params[:last_name].delete(' ')
+    #     params[:email]=params[:email].delete(' ')
+    #     params[:password]=params[:password].delete(' ')
+    #     params[:c_password]=params[:c_password].delete(' ')
+    #     params[:last_name]=params[:last_name].upcase
+    #     temp=params[:advisor].match(/(\w+) (\w+)/)
+        
+    #     params[:advisor]=User.where(:first_name => temp[1] , :last_name => temp[2]).pluck(:uin)
+    #     params[:advisor]=params[:advisor][0]
+    #     Auth.create(:username => params[:uin],:role => params[:role],:password => params[:password],:email => params[:email])
+    #     User.create(:uin => params[:uin],:first_name => params[:first_name],:last_name => params[:last_name],:review_year => params[:review_year],:advisor => params[:advisor])
+    #     Review.create(:user_id => params[:uin],:year => params[:review_year])
+    #     flash[:notice] = "User Created Successfully"
+    #     render '/searches/new'  
+    # end
+    
     def user_create
-        if params[:uin]=="" or params[:first_name]=="" or params[:last_name]=="" or params[:review_year]=="" or params[:email]=="" or  params[:password]==""  or  params[:c_password]==""   
+        if params[:uin]=="" or params[:first_name]=="" or params[:last_name]=="" or params[:review_year]=="" or params[:email]==""
             flash[:notice] = "No field can be empty"
             render '/searches/add_user' and return
-        end
-        
-        if params[:password]!=params[:c_password]
-            flash[:notice] = "Password and Confirm password Should Match"
-            render '/searches/add_user' and return 
         end
         
         temp2=Review.rev_func(params[:uin])
@@ -182,13 +212,14 @@ class SearchesController < ApplicationController
         params[:first_name]=params[:first_name].upcase
         params[:last_name]=params[:last_name].delete(' ')
         params[:email]=params[:email].delete(' ')
-        params[:password]=params[:password].delete(' ')
-        params[:c_password]=params[:c_password].delete(' ')
+        params[:password]=''
+        params[:c_password]=''
         params[:last_name]=params[:last_name].upcase
         temp=params[:advisor].match(/(\w+) (\w+)/)
         
         params[:advisor]=User.where(:first_name => temp[1] , :last_name => temp[2]).pluck(:uin)
         params[:advisor]=params[:advisor][0]
+        byebug
         Auth.create(:username => params[:uin],:role => params[:role],:password => params[:password],:email => params[:email])
         User.create(:uin => params[:uin],:first_name => params[:first_name],:last_name => params[:last_name],:review_year => params[:review_year],:advisor => params[:advisor])
         Review.create(:user_id => params[:uin],:year => params[:review_year])
