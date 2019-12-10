@@ -50,16 +50,38 @@ class SearchesController < ApplicationController
         end
         if params[:uin]!=""
             @temp=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
+            check=Auth.where(:username =>params[:uin]).select('DISTINCT ON (username) *').pluck(:role)
+            if check[0] == "F"
+                @temp = null
+            end
         else
             temp=User.pluck(:uin)
+            check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
+            check.each{ |x|
+                if(x == "F" or x == "Faculty")
+                    temp.delete_at(check.index(x))
+                end
+            }
             @temp=Review.rev_func(temp).select('DISTINCT ON (reviews.user_id,reviews.year) *')
         end
         if params[:first_name]!=""
             temp=User.where(:first_name =>params[:first_name]).pluck(:uin)
+            check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
+            check.each{ |x|
+                if(x == "F" or x == "Faculty")
+                    temp.delete_at(check.index(x))
+                end
+            }
             @temp=@temp.where(:user_id =>temp)
         end
         if params[:last_name]!=""
              temp=User.where(:last_name =>params[:last_name]).pluck(:uin)
+             check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
+             check.each{ |x|
+                if(x == "F" or x == "Faculty")
+                    temp.delete_at(check.index(x))
+                end
+            }
              @temp=@temp.where(:user =>temp)
         end
         if params[:review_year]!=""
