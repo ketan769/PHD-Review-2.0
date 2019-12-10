@@ -26,22 +26,13 @@ ActiveRecord::Schema.define(version: 20191209071643) do
     t.datetime "password_reset_sent_at"
   end
 
-  create_table "logins", force: :cascade do |t|
-    t.integer  "username"
-    t.string   "password"
-    t.string   "email"
-    t.string   "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "reviews", force: :cascade do |t|
-    t.integer  "review_id"
     t.bigint   "user_id"
+    t.integer  "review_id"
+    t.string   "reviewer"
     t.integer  "year"
     t.string   "review_score"
     t.string   "notes"
-    t.string   "reviewer"
     t.string   "comments_for_faculty"
     t.string   "comments_for_student"
     t.date     "review_open_date"
@@ -66,10 +57,10 @@ ActiveRecord::Schema.define(version: 20191209071643) do
     t.string   "content_type"
     t.string   "file_contents"
     t.string   "filename"
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 
-  create_table "searches", id: false, force: :cascade do |t|
-    t.integer  "uin"
+  create_table "searches", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.decimal  "review_year"
@@ -77,27 +68,34 @@ ActiveRecord::Schema.define(version: 20191209071643) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "users", id: false, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.integer  "uin"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "gender"
     t.string   "major"
     t.string   "degree"
+    t.date     "prelim_date"
     t.string   "review_year"
-    t.integer  "cumul_gpa"
+    t.decimal  "cumul_gpa"
     t.date     "degree_plan_date"
-    t.datetime "qual_exam_date"
+    t.date     "qual_exam_date"
     t.string   "qual_exam_result"
-    t.datetime "prelim_date"
-    t.datetime "proposal_date"
-    t.datetime "final_exam_defence_date"
+    t.date     "proposal_date"
+    t.date     "final_exam_defence_date"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "fieldname"
     t.string   "advisor"
     t.string   "start_semester"
     t.string   "decision_letter"
+    t.string   "fielname"
+    t.string   "content_type"
+    t.string   "file_contents"
+    t.binary   "decision_let"
+    t.binary   "sturep"
+    t.string   "content_typesr"
+    t.string   "file_contentsr"
   end
 
 end
