@@ -212,8 +212,8 @@ class SearchesController < ApplicationController
         params[:first_name]=params[:first_name].upcase
         params[:last_name]=params[:last_name].delete(' ')
         params[:email]=params[:email].delete(' ')
-        params[:password]=''
-        params[:c_password]=''
+        params[:password]='0000'
+        params[:c_password]='0000'
         params[:last_name]=params[:last_name].upcase
         temp=params[:advisor].match(/(\w+) (\w+)/)
         

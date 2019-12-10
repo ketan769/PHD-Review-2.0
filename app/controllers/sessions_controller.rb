@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def create
    @auth = Auth.find_by(username: params[:username])
-   if(params[:password] == "")
+   if(params[:password] == "0000" || params[:password] == "")
        flash[:alert] = "Please create a password before logging in by clicking on Change Password?"
        redirect_to '/login'
    elsif @auth && @auth.authenticate(params[:password])
