@@ -2,103 +2,102 @@
 
 <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css" integrity="" crossorigin="anonymous">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">PHD REVIEW SYSTEM</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-    <form action ="/login"><button   class="btn btn-secondary"  style="float: right;">Log Out</button></form>
-  </div>
+    <a class="navbar-brand" href="#">PHD REVIEW SYSTEM</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+        <form action="/login">
+            <button class="btn btn-secondary" style="float: right;">Log Out</button>
+        </form>
+    </div>
 </nav>
 
 
 <div class="container">
-<p id=”notice”><%= notice %></p>    
-<div class="page-header">
-<head>
-      <title>PHD-Review-TAMU</title>
-   </head>
+    <p id=”notice”><%= notice %></p>
+    <div class="page-header">
+        <head>
+            <title>PHD-Review-TAMU</title>
+        </head>
 
-<h1>Create User</h1>
-</div>
-<div class="container">
-<bootstrap_form_for>  
-<form action="/user_create">
-    <div class='form-row'>
-
-        <div class="form-group col-md-4">
-            <label for="uin">UIN</label>
-            <input type="text" class="form-control" name="uin" maxlength="10">
-        </div>
-
-        <div class="form-group col-md-4">
-            <label for="first_name">First Name</label>
-            <input type="text" class="form-control" name="first_name" maxlength="20">
-        </div>
-
-        <div class="form-group col-md-4">
-            <label for="last_name">Last Name</label>
-            <input type="text" class="form-control" name="last_name" maxlength="20">
-        </div>
+        <h1>Create User</h1>
     </div>
-    <div class="form-row">
+    <div class="container">
+        <form action="/user_create">
+            <div class='form-row'>
 
-        <div class="form-group col-md-4">
-            <label for="start_semester">Start Semester</label>
-            <input type="text" class="form-control" name="start_semester">
-        </div>
+                <div class="form-group col-md-4">
+                    <label for="uin">UIN</label>
+                    <input type="text" class="form-control" name="uin" maxlength="10">
+                </div>
 
-        <div class="form-group col-md-4">
-            <label for="cumul_gpa">Cumulative GPA</label>
-            <input type="number" step="0.01" min="0" max="4" class="form-control" name="cumul_gpa">
-        </div>
+                <div class="form-group col-md-4">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" name="first_name" maxlength="20">
+                </div>
 
-        <div class="form-group col-md-4">
-            <label for="start_semester">Review Year</label>
-            <input type="text" class="form-control" name="review_year" maxlength="4">
-        </div>
+                <div class="form-group col-md-4">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" name="last_name" maxlength="20">
+                </div>
+            </div>
+            <div class="form-row">
+
+                <!--                <div class="form-group col-md-4">-->
+                <!--                    <label for="start_semester">Start Semester</label>-->
+                <!--                    <input type="text" class="form-control" name="start_semester">-->
+                <!--                </div>-->
+
+                <!--                <div class="form-group col-md-4">-->
+                <!--                    <label for="cumul_gpa">Cumulative GPA</label>-->
+                <!--                    <input type="number" step="0.01" min="0" max="4" class="form-control" name="cumul_gpa">-->
+                <!--                </div>-->
+
+                <div class="form-group col-md-4">
+                    <label for="start_semester">Review Year</label>
+                    <input type="text" class="form-control" name="review_year" maxlength="4">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="exampleSelect1">Role</label>
+                    <select class="form-control" id="role" name="role">
+                        <
+                        <option>Admin</option>
+                        <option>Student</option>
+                        <option>Faculty</option>
+                        >
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="advisor">Advisor</label>
+                    <select name="advisor" class="form-control">
+                        <% @temp21.each do |ad| %>
+                        <option><%=ad%></option>
+                        <%end%>
+                    </select>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="password">Password</label></label>
+                    <input type="text" name="password" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="c_password">Confirm Password</label>
+                    <input type="text" name="c_password" class="form-control">
+                </div>
+            </div>
+            <button type="submit" style="float: right" class="btn btn-primary">Save</button>
+        </form>
+        <form action="/searches/new">
+            <button class="btn btn-primary">Back</button>
+        </form>
     </div>
-    <div class="form-row">
-
-        <div class="form-group col-md-4">
-            <label for="exampleSelect1">Role</label>
-            <select class="form-control" id="role" name="role">
-                <
-                <option>Admin</option>
-                <option>Student</option>
-                <option>Faculty</option>
-                >
-            </select>
-        </div>
-
-        <div class="form-group col-md-4">
-            <label for="advisor">Advisor</label>
-            <select name="advisor" class="form-control">
-                <% @temp21.each do |ad| %>
-                <option><%=ad%></option>
-                <%end%>
-            </select>
-        </div>
-        
-        <div class="form-group col-md-4">
-            <label for="email">Email</label>
-            <input type="text" name="email" class="form-control">
-        </div>
-    </div>
-    <div class="form-row">
-
-        <div class="form-group col-md-6">
-            <label for="password">Password</label></label>
-            <input type="text" name="password" class="form-control">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="c_password">Confirm Password</label>
-            <input type="text" name="c_password" class="form-control">
-        </div>
-    </div>
-    <button type="submit"style="float: right" class="btn btn-primary">Save</button>
-</form>
-<form action="/searches/new"><button class="btn btn-primary">Back</button></form>
-</div>
 </html>
-
