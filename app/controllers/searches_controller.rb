@@ -356,14 +356,14 @@ class SearchesController < ApplicationController
     def show_student_report
       if(session[:user]==nil)
             redirect_to "/login" and return
-      end    
+      end  
       @document=User.find_by(:uin => session[:pdf_user]) 
       if(@document.fieldname==nil)
           flash[:notice] = "Document does not exist"
           redirect_to "/doc_up" and return
       end
       send_data(@document.sturep,
-                type: @document.content_type,
+                type: @document.content_typesr,
                 filename: @document.fieldname,
                 :disposition => 'inline')
     end
