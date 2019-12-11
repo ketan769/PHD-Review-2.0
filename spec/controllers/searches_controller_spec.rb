@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+require 'spec_helper'
 RSpec.describe SearchesController, type: :controller do
     describe 'new' do
         render_views

@@ -31,37 +31,51 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-Given /^the blog is set up$/ do
-  Blog.default.update_attributes!({:blog_name => 'Teh Blag',
-                                   :base_url => 'http://localhost:3000'});
-  Blog.default.save!
-  User.create!({:login => 'admin',
-                :password => 'aaaaaaaa',
-                :email => 'joe@snow.com',
-                :profile_id => 1,
-                :name => 'admin',
-                :state => 'active'})
+Given /^the website is set up$/ do
+  Auth.create!({:username => 'test',
+                :password_digest => 'test',
+                :email => 'test@gmail.com',
+                :role => 'S',
+                :created_at => '1',
+                :updated_at => '2',
+                :password_reset_token => '.',
+                :password_reset_sent_at => '.'
+  })
 end
 
-Given /^I am on the login page$/ do
-  visit '/'
+Given /^(?:|I )am on (.+)$/ do |page_name|
+  visit path_to(page_name)
+end
 
-And /^I am a student$/ do
-  
+When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
+  fill_in(field, :with => value)
+end
 
-And /^I am logged into the admin panel$/ do
-  visit '/accounts/login'
-  fill_in 'user_login', :with => 'admin'
-  fill_in 'user_password', :with => 'aaaaaaaa'
-  click_button 'Login'
+When /^(?:|I )press "([^"]*)"$/ do |button|
+  click_button(button)
+end
+
+
+Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
+  regexp = Regexp.new(regexp)
+
   if page.respond_to? :should
-    page.should have_content('Login successful')
+    page.should have_xpath('//*', :text => regexp)
   else
-    assert page.has_content?('Login successful')
+    assert page.has_xpath?('//*', :text => regexp)
   end
 end
 
-# Single-line step scoper
+
+
+Then /^(?:|I )should see "([^"]*)"$/ do |text|
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
+end
+
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
 end
@@ -71,29 +85,10 @@ When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
   with_scope(parent) { When "#{step}:", table_or_string }
 end
 
-Given /^(?:|I )am on (.+)$/ do |page_name|
-  visit path_to(page_name)
-end
-
-When /^(?:|I )go to (.+)$/ do |page_name|
-  visit path_to(page_name)
-end
-
-When /^(?:|I )press "([^"]*)"$/ do |button|
-  click_button(button)
-end
-
 When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
 end
 
-When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field, :with => value)
-end
-
-When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
-  fill_in(field, :with => value)
-end
 
 # Use this to fill in an entire form with data from a table. Example:
 #
@@ -132,13 +127,7 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
   attach_file(field, File.expand_path(path))
 end
 
-Then /^(?:|I )should see "([^"]*)"$/ do |text|
-  if page.respond_to? :should
-    page.should have_content(text)
-  else
-    assert page.has_content?(text)
-  end
-end
+
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
