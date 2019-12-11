@@ -353,7 +353,7 @@ class SearchesController < ApplicationController
                 :disposition => 'inline')
     end
     
-    def show_degree_plan
+    def show_student_report
       if(session[:user]==nil)
             redirect_to "/login" and return
       end    
