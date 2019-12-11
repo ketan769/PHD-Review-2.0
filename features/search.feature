@@ -12,9 +12,10 @@ Background: students in database
     
     
     Scenario: search user with uin
-     Given the website is set up
-     Given I am on the search page
-     When I fill in "329" for "uin" 
-     And I press "Search Reviews"
-     Then I should see "329"
+
+    Given the website is set up
+    Given I am on Searches page 
+    And I fill in "uin" with "327005544" 
+    And I press "Search Reviews"
+    Then I should see "No record found"
 

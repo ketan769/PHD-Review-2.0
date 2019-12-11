@@ -6,9 +6,8 @@ Feature: Login to application
   
   Scenario:
   Given the website is set up
-  Given I am on the login page
-  When I fill in "test" for "username"
-  And I fill in "" for "password"
+  Given I am on login page
+  When I fill in "username" with "test"
+  And I fill in "password" with ""
   And I press "Login"
   Then I should see "Please create a password before logging in by clicking on Change Password?"
- 
