@@ -17,5 +17,4 @@ Background: students in database
      When I fill in "329" for "uin" 
      And I press "Search Reviews"
      Then I should see "329"
-     
-     
+

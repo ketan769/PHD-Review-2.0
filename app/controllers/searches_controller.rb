@@ -7,6 +7,10 @@ class SearchesController < ApplicationController
 
     
     def new
+        session[:page]=nil
+        if(session[:user]==nil)
+            redirect_to "/login" and return
+        end
         check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
         if(check[0]=='S' or check[0]=='Student')
            redirect_to studet_path(check,:uin =>session[:user]) and return
@@ -15,15 +19,23 @@ class SearchesController < ApplicationController
         session[:review_year]=nil
         session[:first_name]=nil
         session[:last_name]=nil
+        session[:role]=nil
     end
 
 
     def index
+        if(session[:user]==nil)
+            redirect_to "/login" and return
+        end
+        
         check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
         if(check[0]=='S' or check[0]=='Student' )
             redirect_to studet_path(check,:uin =>session[:user]) and return
         end
         
+        if(session[:page]=="review")
+            redirect_to "/reviews" and return
+        end
         if params[:first_name]!=nil and params[:last_name]!=nil  
             params[:first_name]=params[:first_name].delete(' ')
             params[:first_name]=params[:first_name].upcase
@@ -48,6 +60,9 @@ class SearchesController < ApplicationController
         if session[:last_name]!=nil
             params[:last_name]=session[:last_name]
         end
+        if session[:role]!=nil
+            params[:role]=session[:role]
+        end
         if params[:uin]!=""
             @temp=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
             check=Auth.where(:username =>params[:uin]).select('DISTINCT ON (username) *').pluck(:role)
@@ -57,42 +72,57 @@ class SearchesController < ApplicationController
         else
             temp=User.pluck(:uin)
             check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
-            check.each{ |x|
-                if(x == "F" or x == "Faculty")
-                    temp.delete_at(check.index(x))
-                end
-            }
+            # check.each{ |x|
+            #     if(x == "F" or x == "Faculty")
+            #         temp.delete_at(check.index(x))
+            #     end
+            # }
             @temp=Review.rev_func(temp).select('DISTINCT ON (reviews.user_id,reviews.year) *')
         end
         if params[:first_name]!=""
             temp=User.where(:first_name =>params[:first_name]).pluck(:uin)
             check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
-            check.each{ |x|
-                if(x == "F" or x == "Faculty")
-                    temp.delete_at(check.index(x))
-                end
-            }
+            # check.each{ |x|
+            #     if(x == "F" or x == "Faculty")
+            #         temp.delete_at(check.index(x))
+            #     end
+            # }
             @temp=@temp.where(:user_id =>temp)
         end
         if params[:last_name]!=""
              temp=User.where(:last_name =>params[:last_name]).pluck(:uin)
              check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
-             check.each{ |x|
-                if(x == "F" or x == "Faculty")
-                    temp.delete_at(check.index(x))
-                end
-            }
+            #  check.each{ |x|
+            #     if(x == "F" or x == "Faculty")
+            #         temp.delete_at(check.index(x))
+            #     end
+            # }
              @temp=@temp.where(:user =>temp)
         end
         if params[:review_year]!=""
             @temp=@temp.where(:year =>params[:review_year])
         end
         check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
-        
+    
         if(check[0]=='Faculty' or check[0]=='F' )
             temp=User.where(:advisor =>session[:user]).pluck(:uin)
             @temp=@temp.where(:user =>temp)
         end
+        
+        if(params[:role]=="2" )
+            temp=Auth.where(:role =>'Faculty').select('DISTINCT ON (username) *').pluck(:username)
+            @temp=@temp.where(:user =>temp)
+        end
+        if(params[:role]=="1")
+            temp=Auth.where(:role =>'Student').select('DISTINCT ON (username) *').pluck(:username)
+            @temp=@temp.where(:user =>temp)
+        end
+        if(params[:role]=="3")
+            temp=Auth.where(:role =>'Admin').select('DISTINCT ON (username) *').pluck(:username)
+            @temp=@temp.where(:user =>temp)
+        end
+        
+        
         if @temp==[]
             flash[:notice] = "No record found"
             render '/searches/new'    
@@ -101,6 +131,7 @@ class SearchesController < ApplicationController
             session[:review_year]=params[:review_year]
             session[:first_name]=params[:first_name]
             session[:last_name]=params[:last_name]
+            session[:role]=params[:role]
             session[:duin]=@temp.pluck(:user_id)
             session[:dyear]=@temp.pluck(:year)
             flash.clear
@@ -111,6 +142,9 @@ class SearchesController < ApplicationController
     end
 
     def show
+      if(session[:user]==nil)
+            redirect_to "/login" and return
+      end    
       check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
       if(check[0]=='S' or check[0]=='Student' )
         redirect_to studet_path(check,:uin =>session[:user]) and return
@@ -135,6 +169,14 @@ class SearchesController < ApplicationController
     end
     
     def date
+        if(session[:user]==nil)
+            redirect_to "/login" and return
+        end
+        if(params[:chk].uniq.length==1)
+            flash[:notice]="select a line item"
+            redirect_to "/searches" and return
+        end
+        
         temp=params[:chk]
         temp1=[]
         temp.each do |i|
@@ -146,12 +188,14 @@ class SearchesController < ApplicationController
         end
         @temp2=temp1
         session[:chk]=@temp2
-    
     end
     
     def add_user
+        if(session[:user]==nil)
+            redirect_to "/login" and return
+        end
         flash.clear
-        temp=Auth.where(:role =>"Faculty").pluck(:username)
+        temp=Auth.where(:role =>"Faculty").pluck(:username).uniq
         tempf=User.where(:uin => temp).pluck(:first_name)
         templ=User.where(:uin => temp).pluck(:last_name)
         temps=['No Selection']
@@ -197,6 +241,9 @@ class SearchesController < ApplicationController
     # end
     
     def user_create
+        if(session[:user]==nil)
+            redirect_to "/login" and return
+        end
         if params[:uin]=="" or params[:first_name]=="" or params[:last_name]=="" or params[:review_year]=="" or params[:email]==""
             flash[:notice] = "No field can be empty"
             render '/searches/add_user' and return
@@ -216,7 +263,6 @@ class SearchesController < ApplicationController
         params[:c_password]='0000'
         params[:last_name]=params[:last_name].upcase
         temp=params[:advisor].match(/(\w+) (\w+)/)
-        
         params[:advisor]=User.where(:first_name => temp[1] , :last_name => temp[2]).pluck(:uin)
         params[:advisor]=params[:advisor][0]
         Auth.create(:username => params[:uin],:role => params[:role],:password => params[:password],:email => params[:email])
@@ -227,6 +273,9 @@ class SearchesController < ApplicationController
     end
     
     def studet
+      if(session[:user]==nil)
+            redirect_to "/login" and return
+      end    
       @detail=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *').limit(1)
       @revs=Review.rev_func(params[:uin]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
       temp=@detail.pluck(:user_id)
@@ -240,10 +289,12 @@ class SearchesController < ApplicationController
           @tempad=""
       end
       session[:pdf_user]= params[:uin]
-      
     end
     
     def doc_up
+      if(session[:user]==nil)
+            redirect_to "/login" and return
+      end    
       @document1=User.find_by(:uin =>session[:pdf_user])
       @temp5=@document1.fielname   
       @temp6=@document1.fieldname
@@ -251,18 +302,17 @@ class SearchesController < ApplicationController
     end
     
     def savepd2
+        if(session[:user]==nil)
+            redirect_to "/login" and return
+        end
         User.savepdf2(params,session[:pdf_user])
         redirect_to '/doc_up'        
     end
     
-    def savepd3
-        Review.savepdf(params)
-        flash[:notice] = "Decision Letter uploaded for #{params[:tempid]}"
-        redirect_to '/searches'
-    end
-    
     def view_letter
-       
+      if(session[:user]==nil)
+            redirect_to "/login" and return
+      end  
       @document=Review.find_by(:user_id =>params[:uin_let],:year => params[:year_let])    
       if @document.decision_let == nil
           flash[:notice] = "Decision Not available"
@@ -275,12 +325,18 @@ class SearchesController < ApplicationController
     end
         
     def savepd
+        if(session[:user]==nil)
+            redirect_to "/login" and return
+        end
         User.savepdf(params,session[:pdf_user])
         redirect_to '/doc_up'        
     end
 
     
     def showpdf
+      if(session[:user]==nil)
+            redirect_to "/login" and return
+      end    
       @document=User.find_by(:uin => session[:pdf_user])    
       send_data(@document.decision_let,
                 type: @document.content_type,
@@ -288,9 +344,15 @@ class SearchesController < ApplicationController
     end
     
     def add_item
+      if(session[:user]==nil)
+            redirect_to "/login" and return
+      end    
     end
     
     def item_create
+        if(session[:user]==nil)
+            redirect_to "/login" and return
+        end
         temp1=Review.rev_func(params[:uin]).where(:year => params[:review_year]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
         if temp1==[]
             Review.create(:user_id => params[:uin] ,:year => params[:review_year])
@@ -303,6 +365,9 @@ class SearchesController < ApplicationController
     end
     
     def det_update
+      if(session[:user]==nil)
+            redirect_to "/login" and return
+      end    
       @temp=User.find(params[:uin])
       @temp.update_attributes!(:first_name =>params[:first_name],:last_name =>params[:last_name],:start_semester => params[:start_semester],
                                 :cumul_gpa =>params[:cumul_gpa],:degree_plan_date =>params[:degree_plan_date],
@@ -312,6 +377,9 @@ class SearchesController < ApplicationController
     end
     
     def date_update
+        if(session[:user]==nil)
+            redirect_to "/login" and return
+        end
         tempd1=session[:duin]
         session[:duin]=nil
         tempd2=session[:dyear]
@@ -323,8 +391,46 @@ class SearchesController < ApplicationController
                 k=k+1
                 next
             else
-                
                 @rev=Review.find_by(:user_id =>i ,:year => j)
+                if params[:rosd_date]==""
+                    params[:rosd_date]=@rev.review_official_student_deadline
+                end
+                if params[:rsid_date]==""
+                    params[:rsid_date]==@rev.review_student_input_date
+                end
+                if params[:rfid_date]==""
+                    params[:rfid_date]==@rev.review_faculty_input_date
+                end
+                if params[:rrd_date]==""
+                    params[:rrd_date]==@rev.review_release_date
+                end
+                if params[:ipod_date]==""
+                    params[:ipod_date]==@rev.ip_open_date
+                end
+                if params[:ipsd_date]==""
+                    params[:ipsd_date]==@rev.ip_official_student_deadline
+                end
+                if params[:ipsid_date]==""
+                    params[:ipsid_date]==@rev.ip_student_input_date
+                end
+                if params[:iprd_date]==""
+                    params[:iprd_date]==@rev.ip_release_date
+                end
+                if params[:dpo_date]==""
+                    params[:dpo_date]==@rev.dp_open_date
+                end
+                if params[:dpos_date]==""
+                    params[:dpos_date]==@rev.dp_official_student_deadline
+                end
+                if params[:dpsi_date]==""
+                    params[:dpsi_date]==@rev.dp_student_input_date
+                end
+                if params[:dpfi_date]==""
+                    params[:dpfi_date]==@rev.dp_faculty_input_date
+                end
+                if params[:dprd_date]==""
+                    params[:dprd_date]==@rev.dp_release_date
+                end
                 @rev.update_attributes(:review_official_student_deadline => params[:rosd_date],:review_student_input_date =>params[:rsid_date],
                                         :review_faculty_input_date =>params[:rfid_date],:review_release_date => params[:rrd_date],:ip_open_date =>params[:ipod_date],
                                         :ip_official_student_deadline => params[:ipsd_date],:ip_student_input_date => params[:ipsid_date],

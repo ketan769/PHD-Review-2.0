@@ -41,17 +41,20 @@
      <div class="form-group">
       <label for="review_year">Review Year</label>
       <input type="text" name="review_year" size="50" class="form-control" placeholder="Enter Review year" maxlength="4">
+    <fieldset>
     </div>  
-  <!--  <div class="form-group">-->
-  <!--  <label for="review_year">Review Year</label>-->
-  <!--  <select class="custom-select"  name="review_year">-->
-  <!--    <option selected="">Select review year</option>-->
-  <!--    <option value="1">2018</option>-->
-  <!--    <option value="2">2019</option>-->
-  <!--  </select>-->
-  <!--</div>-->
+    <div class="form-group">
+    <label for="search">Filter</label>
+    <select class="custom-select"  name="role">
+      <option value="1">Students</option>
+      <option value="2">Faculty</option>
+      <option value="3">Admin</option>
+    </select>
+  </div>
  
-<button type="submit" class="btn btn-primary">Submit</button></form>
+<button type="submit" class="btn btn-primary">Search Dates</button>
+<button type="submit" class="btn btn-primary" formaction="/reviews">Search Reviews</button>
+</form>
 
 <form action ="/add_user"><button  class="btn btn-primary"  style="float: right;">Add User</button></form>
 </div>
