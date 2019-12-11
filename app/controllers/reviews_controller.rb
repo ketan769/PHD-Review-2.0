@@ -161,9 +161,7 @@ class ReviewsController < ApplicationController
       else 
         temp5=""
       end 
-      byebug
       @review.update_attributes!(:reviewer => temp5)
-      byebug
       flash[:notice] = "Review was updated successfully."
       redirect_to review_path(@review) and return
     end
