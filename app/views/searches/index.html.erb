@@ -45,11 +45,17 @@
             <th>DP Student Input Date</th>
             <th>DP Faculty Input Date</th>
             <th>DP Release Date</th>
+            <th>Review</th>
+            <th>Current Degree</th>
+            <th>Start Semester</th>
+            <th>GPR Cumulative</th>
             <th>Degree Plan Date</th>
             <th>Qual Exam Date</th>
+            <th>Qual Exam Result</th>
             <th>Prelim Date</th>
             <th>Proposal Date</th>
             <th>Final Exam Defense Date</th>
+            <th>Decision Letter</th>
          </tr>
          <% @temp.each do |rev| %>
          <tr>
@@ -72,11 +78,24 @@
             <td><%= rev[:dp_student_input_date] %></td>
             <td><%= rev[:dp_faculty_input_date] %></td>
             <td><%= rev[:dp_release_date] %></td>
+            <td><%= link_to '<button type="button">view</button>'.html_safe, review_path(rev) %></td>
+            <td><%= rev.user[:degree] %></td>
+            <td><%= rev.user[:start_semester] %></td>
+            <td><%= rev.user[:cumul_gpa]%></td>
             <td><%= rev.user[:degree_plan_date] %></td>
             <td><%= rev.user[:qual_exam_date] %></td>
+            <td><%= rev.user[:qual_exam_result] %></td>
             <td><%= rev.user[:prelim_date] %></td>
             <td><%= rev.user[:proposal_date] %></td>
             <td><%= rev.user[:final_exam_defence_date] %></td>
+            <td>
+               <%= form_for @tempk,url:{ :action => "savepd3"} do |f| %>
+                    <%= f.hidden_field :tempid, :value =>rev.user[:uin] %>
+                    <%= f.hidden_field :tempid2, :value =>rev[:year] %>
+                    <%= f.file_field :cover%>
+                    <%= f.submit%>
+                <%end%>
+            </td>
          <%end %>
       </table>
 <button type="submit" class="btn btn-primary">Modify Date(s)</button>

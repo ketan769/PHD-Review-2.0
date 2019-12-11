@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+   session[:user]=nil
   end
 
   def create
@@ -13,7 +14,7 @@ class SessionsController < ApplicationController
       session[:user] = params[:username]
       redirect_to '/searches/new'
    else
-      flash[:alert] = "Email or password is invalid"
+      flash[:alert] = "Username or password is invalid"
       redirect_to '/login'
    end
   end
