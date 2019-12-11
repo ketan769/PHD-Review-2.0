@@ -188,6 +188,12 @@ class SearchesController < ApplicationController
         if(session[:user]==nil)
             redirect_to "/login" and return
         end
+        check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
+    
+        if(check[0]=='Faculty' or check[0]=='F' )
+            flash[:notice] = "Sorry, you don't have admin rights."
+            redirect_to "/searches/new" and return
+        end
         temp=Auth.where(:role =>"Faculty").pluck(:username).uniq
         tempf=User.where(:uin => temp).pluck(:first_name)
         templ=User.where(:uin => temp).pluck(:last_name)
@@ -330,7 +336,11 @@ class SearchesController < ApplicationController
       if(session[:user]==nil)
             redirect_to "/login" and return
       end    
-      @document=User.find_by(:uin => session[:pdf_user])    
+      @document=User.find_by(:uin => session[:pdf_user])
+      if(@document.fielname == nil)
+          flash[:notice] = "Document does not exist"
+          redirect_to "/doc_up" and return
+      end
       send_data(@document.decision_let,
                 type: @document.content_type,
                 filename: @document.fielname,
@@ -343,6 +353,10 @@ class SearchesController < ApplicationController
       end    
       
       @document=User.find_by(:uin => session[:pdf_user]) 
+      if(@document.fieldname==nil)
+          flash[:notice] = "Document does not exist"
+          redirect_to "/doc_up" and return
+      end
       send_data(@document.sturep,
                 type: @document.content_type,
                 filename: @document.fieldname,

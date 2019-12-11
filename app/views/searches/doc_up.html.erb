@@ -30,7 +30,7 @@
                  <div class="form-group col-md-6">
                     <%= f.file_field :cover%>
                     <%= f.submit%>
-                     <%=link_to @temp5, '/showpdf' if @temp5 != nil? %>
+                     <%=link_to @temp5, showpdf_path() if @temp5 != nil? %>
                   </div>
                 <%end%>
 
@@ -42,7 +42,7 @@
                  <div class="form-group col-md-6">
                     <%= f.file_field :cover%>
                     <%= f.submit%>
-                     <%=link_to @temp6, '/show_student_report' if @temp6 != nil? %>
+                     <%=link_to @temp6, show_student_report_path() if @temp6 != nil? %>
                   </div>
                 <%end%>
             </div>
