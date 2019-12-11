@@ -37,36 +37,7 @@
         <div class='actions'><%= f.submit 'Update password' %></div>
         <% end %>
 
-        
-        <%= form_for @auth, :url => password_reset_path(params[:id]) do |f| %>
-        <% if @auth.errors.any? %>
-        <div class='error_messages'>
-            <h2>Form is invalid</h2>
-            <ul>
-                <% for message in @auth.errors.full_messages %>
-                <li><%= message %></li>
-                <% end %>
-            </ul>
-        </div>
-        <% end %>
-        <div class='field'>
-            <div class="form-group row">
-                <label for="password" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                    <%= text_field_tag :password, params[:password] %>
-                </div>
-            </div>
-        </div>
-        <div class='field'>
-            <div class="form-group row">
-                <label for="password_confirmation" class="col-sm-2 col-form-label">Confirm Password</label>
-                <div class="col-sm-10">
-                    <%= text_field_tag :password_confirmation, params[:password_confirmation] %>
-                </div>
-            </div>
-        </div>
-        <div class='actions'><%= f.submit 'Update password' %></div>
-        <% end %>
+
     </div>
 </div>
 </html>
