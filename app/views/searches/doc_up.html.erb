@@ -3,19 +3,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">PHD REVIEW SYSTEM</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-    <form action ="/login"><button   class="btn btn-secondary"  style="float: right;">Log Out</button></form>
-  </div>
 </nav>
-
-
 <div class="container">
 <p id=”notice”><%= notice %></p>    
 <head>
   <form action ="/searches/show"><button  class="btn btn-primary"  style="float: right;">Back</button></form>
-  
+
   <title>PHD-Review-TAMU</title>
 </head>
 
@@ -26,25 +21,25 @@
 
 <div class="container">
         <div class='form-row'>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
               <label for="uin">CV</label>
             <%= form_for @temp4,url:{ :action => "savepd"} do |f| %>
                  <div class="form-group col-md-6">
                     <%= f.file_field :cover%>
                     <%= f.submit%>
-                     <%=link_to @temp5, 'View CV' if @temp5 != nil? %>
+                     <%=link_to @temp5, '/showpdf' if @temp5 != nil? %>
                   </div>
                 <%end%>
 
             </div>
-            
-            <div class="form-group col-md-6">
+
+            <div class="form-group col-md-5">
               <label for="last_name">Student Report</label>
                <%= form_for @temp4,url:{ :action => "savepd2"} do |f| %>
                  <div class="form-group col-md-6">
                     <%= f.file_field :cover%>
                     <%= f.submit%>
-                     <%=link_to @temp6, '/showpdf' if @temp6 != nil? %>
+                     <%=link_to @temp6, '/show_student_report' if @temp6 != nil? %>
                   </div>
                 <%end%>
             </div>
