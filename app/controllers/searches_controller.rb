@@ -97,11 +97,11 @@ class SearchesController < ApplicationController
         if params[:review_year]!=""
             @temp=@temp.where(:year =>params[:review_year])
         end
+        
         check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
-    
         if(check[0]=='Faculty' or check[0]=='F' )
-            temp=User.where(:advisor =>session[:user]).pluck(:uin)
-            @temp=@temp.where(:user =>temp)
+            tempf=User.where(:advisor =>session[:user]).pluck(:uin)
+            @temp=@temp.where(:user =>tempf)
         end
         
         if(params[:role]=="2" )
@@ -374,15 +374,13 @@ class SearchesController < ApplicationController
         session[:duin]=nil
         tempd3=session[:chk]
         k=0
-
-        tempd1.each do |i|
-            if tempd3[k]=='off'
-                k=k+1
+        tempd1.zip(tempd3).each do |iter,iter2|
+            if iter2=='off'
                 next
             else
-                temp1=Review.rev_func(i).where(:year => params[:review_year]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
+                temp1=Review.rev_func(iter).where(:year => params[:review_year]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
                 if temp1==[]
-                    Review.create(:user_id => i ,:year => params[:review_year])
+                    Review.create(:user_id => iter ,:year => params[:review_year])
                 else
                     next
                 end
@@ -416,8 +414,8 @@ class SearchesController < ApplicationController
         k=0
         tempd1.zip(tempd2).each do |i,j|
             if tempd3[k]=='off'
-                k=k+1
                 next
+                k=k+1
             else
                 @rev=Review.find_by(:user_id =>i ,:year => j)
                 if params[:rosd_date]==""
