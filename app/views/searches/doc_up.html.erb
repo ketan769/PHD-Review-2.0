@@ -40,12 +40,12 @@
             </div>
 
             <div class="form-group col-md-5">
-              <label for="last_name">Student Report</label>
+              <label for="last_name">Degree Plan</label>
                <%= form_for @temp4,url:{ :action => "savepd2"} do |f| %>
                  <div class="form-group col-md-6">
                     <%= f.file_field :cover%>
                     <%= f.submit%>
-                     <%=link_to @temp6, show_student_report_path() if @temp6 != nil? %>
+                     <%=link_to @temp6, show_degree_plan_path() if @temp6 != nil? %>
                   </div>
                 <%end%>
             </div>

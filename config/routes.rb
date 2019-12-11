@@ -19,7 +19,7 @@ Rails.application.routes.draw do
    get 'showpdf' ,to: 'searches#showpdf'
    get 'doc_up' ,to: 'searches#doc_up'
    post 'savepd2' ,to: 'searches#savepd2'
-   get 'show_student_report' ,to: 'searches#show_student_report'
+   get 'show_degree_plan' ,to: 'searches#show_degree_plan'
 
    get 'view_letter' ,to: 'searches#view_letter'
   resources :reviews
