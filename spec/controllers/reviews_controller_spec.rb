@@ -7,14 +7,12 @@ RSpec.describe ReviewsController, type: :controller do
         let!(:reviews){Review.create!([{:user_id =>328 ,:year =>2020},{:user_id =>329 ,:year =>2020}])}
 
         it 'opens the review for that year' do
-            get :show, :params=> {:id => "1"}
+            get :index, :params=> {:format => "2020/329"}
             expect(response).to render_template("reviews/index")
         end
         it 'Check data' do
             get :index,  :params=> {:format => "2020/329"}
             expect(assigns(:reviews)).not_to be_nil
         end
-        
-        
     end
 end
