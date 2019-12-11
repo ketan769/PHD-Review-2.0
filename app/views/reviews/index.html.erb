@@ -12,9 +12,7 @@
 </nav>
 
 
-  <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
+<p id=”notice”><%= notice %></p> 
 <div class="page-header">
 <h1>Searched Items</h1>
 </div>
@@ -24,7 +22,7 @@
 	
    <body>
 
-      <table id='Mytable' border = "1" width=100% style='font-size:75%' class="table table-hover"> 
+      <table id='Mytable' border = "1" width=100% style='font-size:80%' class="table table-hover"> 
          <tr class="table-warning">
             <th>UIN</th>
             <th>First-Name</th>
@@ -44,7 +42,7 @@
          </tr>
          <% @temp.each do |rev| %>
          <tr>
-            <td><strong><em></em><%=link_to(rev.user[:uin],search_path(rev,:uin =>rev.user[:uin],:review_year=>rev[:year])) %></em></strong></td>
+            <td><strong><em><%=link_to(rev.user[:uin],search_path(rev,:uin =>rev.user[:uin],:review_year=>rev[:year])) %></em></strong></td>
             <td><%= rev.user[:first_name]%></td>
             <td><%= rev.user[:last_name] %></td>
             <td><%= rev[:year]%></td>
