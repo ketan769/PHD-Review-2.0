@@ -249,7 +249,7 @@ class SearchesController < ApplicationController
             redirect_to "/login" and return
         end
         
-        if params[:uin]=="" or params[:first_name]=="" or params[:last_name]=="" or params[:review_year]=="" or params[:email]==""
+        if params[:uin]=="" or params[:first_name]=="" or params[:last_name]=="" or params[:review_year]=="" or params[:email]=="" 
             flash[:notice] = "No field can be empty"
             redirect_to '/add_user' and return
         end
@@ -372,6 +372,10 @@ class SearchesController < ApplicationController
       if(session[:user]==nil)
             redirect_to "/login" and return
       end
+      if(params[:chk].uniq.length==1)
+            flash[:notice]="select a line item"
+            redirect_to "/searches" and return
+      end
       temp=params[:chk]
       temp1=[]
       temp.each do |i|
@@ -417,7 +421,7 @@ class SearchesController < ApplicationController
       end    
       @temp=User.find(params[:uin])
       @temp.update_attributes!(:first_name =>params[:first_name],:last_name =>params[:last_name],:start_semester => params[:start_semester],
-                                :cumul_gpa =>params[:cumul_gpa],:degree_plan_date =>params[:degree_plan_date],
+                                :cumul_gpa =>params[:cumul_gpa],:degree_plan_date =>params[:degree_plan_date],:qual_exam_date => params[:Qual_Date],
                                 :prelim_date => params[:prelim_date],:proposal_date => params[:proposal_date] , :final_exam_defence_date =>params[:final_exam_defence_date])
       flash[:notice] = "Updated"
       redirect_to :controller => 'searches', :action => 'index'        

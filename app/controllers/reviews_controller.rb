@@ -160,8 +160,10 @@ class ReviewsController < ApplicationController
         temp5=temp3[0]+' '+temp4[0]
       else 
         temp5=""
-      end  
+      end 
+      byebug
       @review.update_attributes!(:reviewer => temp5)
+      byebug
       flash[:notice] = "Review was updated successfully."
       redirect_to review_path(@review) and return
     end
