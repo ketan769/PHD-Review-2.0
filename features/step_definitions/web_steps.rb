@@ -31,17 +31,7 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-# Single-line step scoper
 Given /^the website is set up$/ do
-  # User.create!({:uin => 327005544, 
-  #               :first_name => 'Ketan', 
-  #               :last_name=> 'sethi',
-  #               :review_year =>2018,
-  #               :gender => "Male",
-  #               :cumul_gpa => 4.0 ,
-  #               :degree_plan_date => "2019-11-12T19:30",
-  #               :qual_exam_result => 'Pass',
-  #               :qual_exam_date =>'2019-11-13'})
   Auth.create!({:username => 'test',
                 :password_digest => 'test',
                 :email => 'test@gmail.com',
@@ -52,6 +42,7 @@ Given /^the website is set up$/ do
                 :password_reset_sent_at => '.'
   })
 end
+
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
@@ -63,6 +54,19 @@ end
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
+
+
+Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
+  regexp = Regexp.new(regexp)
+
+  if page.respond_to? :should
+    page.should have_xpath('//*', :text => regexp)
+  else
+    assert page.has_xpath?('//*', :text => regexp)
+  end
+end
+
+
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
   if page.respond_to? :should
@@ -81,21 +85,10 @@ When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
   with_scope(parent) { When "#{step}:", table_or_string }
 end
 
-
-When /^(?:|I )go to (.+)$/ do |page_name|
-  visit path_to(page_name)
-end
-
-
-
 When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
 end
 
-
-When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
-  fill_in(field, :with => value)
-end
 
 # Use this to fill in an entire form with data from a table. Example:
 #
