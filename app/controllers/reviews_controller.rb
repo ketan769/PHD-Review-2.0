@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
     def review_params
         params.require(:review).permit(:user,:review_year,:review_score, :comments_for_student, :comments_for_faculty, :notes)
     end
+    
     def index
         if(session[:user]==nil)
             redirect_to "/login" and return
@@ -101,7 +102,6 @@ class ReviewsController < ApplicationController
             session[:duin]=@temp.pluck(:user_id)
             session[:dyear]=@temp.pluck(:year)
             session[:page]="review"
-            flash.clear
             @tempj=""
             return @temp
         end

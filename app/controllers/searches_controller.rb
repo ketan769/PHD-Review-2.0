@@ -134,7 +134,6 @@ class SearchesController < ApplicationController
             session[:role]=params[:role]
             session[:duin]=@temp.pluck(:user_id)
             session[:dyear]=@temp.pluck(:year)
-            flash.clear
             @tempk=""
             return @temp
         end
@@ -194,7 +193,6 @@ class SearchesController < ApplicationController
         if(session[:user]==nil)
             redirect_to "/login" and return
         end
-        flash.clear
         temp=Auth.where(:role =>"Faculty").pluck(:username).uniq
         tempf=User.where(:uin => temp).pluck(:first_name)
         templ=User.where(:uin => temp).pluck(:last_name)

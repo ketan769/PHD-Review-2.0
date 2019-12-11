@@ -20,7 +20,7 @@
 	
    <body>
 <form action ="/date" >
-      <table id='Mytable' border = "1" bordercolor = "green" width=100% style='font-size:70%' class="table table-hover"> 
+      <table id='Mytable' border = "1" width=100% style='font-size:70%' class="table table-hover"> 
          <tr class="table-warning">
             <th></th>
             <th>UIN</th>
@@ -49,8 +49,8 @@
          </tr>
          <% @temp.each do |rev| %>
          <tr>
-            <td><input type="hidden" size="0"  value="off" name="chk[]" /><input type="checkbox" name="chk[]"  /></td>
-            <td><%=link_to(rev.user[:uin],search_path(rev,:uin =>rev.user[:uin],:review_year=>rev[:year])) %></td>
+            <td><input type="hidden" size="0"  value="off" name="chk[]" /><input type="checkbox" name="chk[]"/></td>
+            <td><strong><em><%=link_to(rev.user[:uin],search_path(rev,:uin =>rev.user[:uin],:review_year=>rev[:year])) %></em></strong></td>
             <td><%= rev.user[:first_name]%></td>
             <td><%= rev.user[:last_name] %></td>
             <td><%= rev[:year]%></td>
@@ -77,8 +77,7 @@
       </table>
 <button type="submit" class="btn btn-primary">Modify Date(s)</button>
 </form>
-<br>
-<br>
+
       <%= link_to 'Back', '/searches/new' %> |  
       <%= link_to 'Add Review Item', add_item_path() %>
       
