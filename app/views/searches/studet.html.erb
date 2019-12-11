@@ -26,24 +26,22 @@
 
 <div class="container">
 <%@detail.each do |rev| %>
-<bootstrap_form_for rev>
-
-    <form action ="/det_update" >
+    <form>
         <div class='form-row'>
             
             <div class="form-group col-md-4">
               <label for="uin">UIN</label>
-              <input type="text" class="form-control" name="uin"  value = "<%=rev.user[:uin]%>" >
+              <input type="text" class="form-control" name="uin"  value = "<%=rev.user[:uin]%>"readonly >
             </div>
             
             <div class="form-group col-md-4">
               <label for="first_name">First Name</label>
-              <input type="text" class="form-control" name="first_name"  value = "<%=rev.user[:first_name]%>"  >
+              <input type="text" class="form-control" name="first_name"  value = "<%=rev.user[:first_name]%>" readonly >
             </div>
             
             <div class="form-group col-md-4">
               <label for="last_name">Last Name</label>
-              <input type="text" class="form-control" name="last_name" value = "<%=rev.user[:last_name]%>" >
+              <input type="text" class="form-control" name="last_name" value = "<%=rev.user[:last_name]%>" readonly>
             </div>
         </div>
         <div class="form-row">
@@ -87,10 +85,7 @@
               <input type="date" class="form-control" name="final_exam_defense_date"  value="<%=rev.user[:final_exam_defence_date]%>" readonly>
             </div>
             </div>
-    <button type="submit" class="btn btn-primary">Save</button>
         </form>
-     
-
   <div class="page-header">
     </br>
     <h1>Decisions</h1>
@@ -127,15 +122,9 @@
         <hr class="my-4">
         <% end %>
         </br>
-
-              <form action="/searches"><button class="btn btn-primary">Back</button></form>
-
-    
         </div>
     </form>
-    
-    
-</div>
+    </div>
 <%end%>
 </body> 
 </div>
