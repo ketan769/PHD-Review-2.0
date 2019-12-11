@@ -303,9 +303,7 @@ class SearchesController < ApplicationController
         if(session[:user]==nil)
             redirect_to "/login" and return
         end
-        byebug
         User.savepdf2(params,session[:pdf_user])
-        byebug
         redirect_to '/doc_up'        
     end
     
