@@ -185,6 +185,7 @@ class SearchesController < ApplicationController
     end
     
     def add_user
+        
         if(session[:user]==nil)
             redirect_to "/login" and return
         end
@@ -194,14 +195,18 @@ class SearchesController < ApplicationController
             flash[:notice] = "Sorry, you don't have admin rights."
             redirect_to "/searches/new" and return
         end
+        
         temp=Auth.where(:role =>"Faculty").pluck(:username).uniq
         tempf=User.where(:uin => temp).pluck(:first_name)
         templ=User.where(:uin => temp).pluck(:last_name)
         temps=['No Selection']
+        
         tempf.zip(templ).each do |i,j|
             temps.append(i+' '+j)
         end
+
         @temp21=temps
+        
     end
     
     # def user_create
@@ -243,9 +248,10 @@ class SearchesController < ApplicationController
         if(session[:user]==nil)
             redirect_to "/login" and return
         end
+        
         if params[:uin]=="" or params[:first_name]=="" or params[:last_name]=="" or params[:review_year]=="" or params[:email]==""
             flash[:notice] = "No field can be empty"
-            render '/searches/add_user' and return
+            redirect_to '/add_user' and return
         end
         
         temp2=Review.rev_func(params[:uin])
@@ -351,7 +357,6 @@ class SearchesController < ApplicationController
       if(session[:user]==nil)
             redirect_to "/login" and return
       end    
-      
       @document=User.find_by(:uin => session[:pdf_user]) 
       if(@document.fieldname==nil)
           flash[:notice] = "Document does not exist"
