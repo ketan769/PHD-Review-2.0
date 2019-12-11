@@ -18,16 +18,21 @@ class PasswordResetsController < ApplicationController
   end
   
   def update
-  @user = User.find_by_password_reset_token!(params[:id])
-  if @user.password_reset_sent_at < 2.hour.ago
+  @auth = Auth.find_by_password_reset_token!(params[:id])
+  if @auth.password_reset_sent_at < 2.hour.ago
     flash[:notice] = 'Password reset has expired'
     redirect_to new_password_reset_path
-  elsif @user.update(user_params)
-    flash[:notice] = 'Password has been reset!'
-    redirect_to new_session_path
+  elsif @auth.update(auth_params)
+    flash[:alert] = 'Password has been reset!'
+    redirect_to '/login'
   else
     render :edit
   end
   end
+  
+  private 
+    def auth_params
+      params.require(:auth).permit(:password)
+    end
 
 end
