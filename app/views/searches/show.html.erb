@@ -97,6 +97,7 @@
 </div>
 
         <% @revs.each do |rev| %>
+        <hr class="my-4">
             <div class="row">
             <div class="col-md-4">
             <div class="bs-component">
@@ -124,13 +125,9 @@
             </div>
         
         </div>
-        <hr class="my-4">
+        
         <% end %>
-        </br>
-
-              <form action="/searches"><button class="btn btn-primary">Back</button></form>
-
-    
+          <form action="/searches"><button class="btn btn-primary">Back</button></form>
         </div>
     </form>
     
