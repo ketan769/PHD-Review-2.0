@@ -14,6 +14,7 @@ module NavigationHelpers
     case page_name
 
     when /^Searches page$/ then '/searches'
+      when /^login page$/ then '/login'
     when /^the home\s?page$/
       movies_path
     when /^the edit page for "(.*)"$/ then
