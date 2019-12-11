@@ -12,6 +12,7 @@
     <p id=”alert”><%= alert %></p>
     <div class="jumbotron">
         <h1>Reset Password</h1>
+        <hr class="my-4">
         <%= form_for @auth, :url => password_reset_path(params[:id]) do |f| %>
         <% if @auth.errors.any? %>
         <div class='error_messages'>
@@ -23,7 +24,6 @@
             </ul>
         </div>
         <% end %>
-        <hr class="my-4">
         <div class='field'>
             <div class="form-group row">
                 <label for="password" class="col-sm-2 col-form-label">Password</label>
