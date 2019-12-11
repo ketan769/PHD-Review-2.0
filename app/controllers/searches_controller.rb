@@ -303,7 +303,9 @@ class SearchesController < ApplicationController
         if(session[:user]==nil)
             redirect_to "/login" and return
         end
+        byebug
         User.savepdf2(params,session[:pdf_user])
+        byebug
         redirect_to '/doc_up'        
     end
     
@@ -338,7 +340,20 @@ class SearchesController < ApplicationController
       @document=User.find_by(:uin => session[:pdf_user])    
       send_data(@document.decision_let,
                 type: @document.content_type,
-                filename: @document.fielname)
+                filename: @document.fielname,
+                :disposition => 'inline')
+    end
+    
+    def show_student_report
+      if(session[:user]==nil)
+            redirect_to "/login" and return
+      end    
+      
+      @document=User.find_by(:uin => session[:pdf_user]) 
+      send_data(@document.sturep,
+                type: @document.content_type,
+                filename: @document.fieldname,
+                :disposition => 'inline')
     end
     
     def add_item
