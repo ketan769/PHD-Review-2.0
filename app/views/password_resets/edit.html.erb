@@ -13,6 +13,7 @@
 <p id=”alert”><%= alert %></p>
 
 <div class="jumbotron">
+  <h1>Reset Password</h1>
   <%= form_for @auth, :url => password_reset_path(params[:id]) do |f| %>
   <% if @auth.errors.any? %>
     <div class='error_messages'>
@@ -32,6 +33,8 @@
         <%= text_field_tag :password, params[:password] %>
       </div>
     </div>
+  </div>
+  <div class='field'>
     <div class="form-group row">
       <label for="password_confirmation" class="col-sm-2 col-form-label">Confirm Password</label>
       <div class="col-sm-10">
@@ -39,38 +42,7 @@
       </div>
     </div>
   </div>
-    <div class='actions'>
-    <%= f.submit 'Update password' %>
-  </div>
+    <div class='actions'><%= f.submit 'Update password' %></div>
 <% end %>
 </div>
 </html>
-
-
-
-
-
-<h1>Reset Password</h1>
-
-<%= form_for @auth, :url => password_reset_path(params[:id]) do |f| %>
-  <% if @auth.errors.any? %>
-    <div class='error_messages'>
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @auth.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class='field'>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class='field'>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class='actions'><%= f.submit 'Update password' %></div>
-<% end %>
