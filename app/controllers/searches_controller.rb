@@ -92,12 +92,9 @@ class SearchesController < ApplicationController
         if params[:last_name]!=""
              temp=User.where(:last_name =>params[:last_name]).pluck(:uin)
              check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
-            #  check.each{ |x|
-            #     if(x == "F" or x == "Faculty")
-            #         temp.delete_at(check.index(x))
-            #     end
-            # }
-             @temp=@temp.where(:user =>temp)
+            
+            
+            @temp=@temp.where(:user =>temp)
         end
         if params[:review_year]!=""
             @temp=@temp.where(:year =>params[:review_year])
@@ -141,13 +138,12 @@ class SearchesController < ApplicationController
     end
 
     def show
-      if(session[:user]==nil)
-            redirect_to "/login" and return
-      end    
+        
       check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
       if(check[0]=='S' or check[0]=='Student' )
         redirect_to studet_path(check,:uin =>session[:user]) and return
       end
+      
       if params[:uin] == nil
          params[:uin] = session[:pdf_user]
       end
@@ -239,6 +235,7 @@ class SearchesController < ApplicationController
     # end
     
     def user_create
+     
         if(session[:user]==nil)
             redirect_to "/login" and return
         end
@@ -357,22 +354,45 @@ class SearchesController < ApplicationController
     def add_item
       if(session[:user]==nil)
             redirect_to "/login" and return
-      end    
+      end
+      temp=params[:chk]
+      temp1=[]
+      temp.each do |i|
+            if i=="on"
+                temp1[-1]="on"
+            else
+                temp1.append(i) 
+            end
+       end
+       @temp2=temp1
+       session[:chk]=@temp2
+      
     end
     
     def item_create
         if(session[:user]==nil)
             redirect_to "/login" and return
         end
-        temp1=Review.rev_func(params[:uin]).where(:year => params[:review_year]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
-        if temp1==[]
-            Review.create(:user_id => params[:uin] ,:year => params[:review_year])
-            flash[:notice] = "Line Item Added"
-            redirect_to :controller => 'searches', :action => 'index' 
-        else
-            flash[:notice] = "Line Item Already Exists"
-            redirect_to :controller => 'searches', :action => 'index'
+        tempd1=session[:duin]
+        session[:duin]=nil
+        tempd3=session[:chk]
+        k=0
+        
+        tempd1.each do |i|
+            if tempd3[k]=='off'
+                k=k+1
+                next
+            else
+                temp1=Review.rev_func(i).where(:year => params[:review_year]).select('DISTINCT ON (reviews.user_id,reviews.year) *')
+                if temp1==[]
+                    Review.create(:user_id => i ,:year => params[:review_year])
+                else
+                    next
+                end
+            end
         end
+        flash[:notice] = "Line Item Added"
+        redirect_to :controller => 'searches', :action => 'index' 
     end
     
     def det_update

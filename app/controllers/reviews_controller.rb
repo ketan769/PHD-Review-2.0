@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
         if(session[:user]==nil)
             redirect_to "/login" and return
         end
+        
         check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
         if(check[0]=='S' or check[0]=='Student' )
             redirect_to studet_path(check,:uin =>session[:user]) and return
@@ -19,18 +20,12 @@ class ReviewsController < ApplicationController
             params[:last_name]=params[:last_name].delete(' ')
             params[:last_name]=params[:last_name].upcase
         end
-
-        
         if session[:uin]!=nil
             params[:uin]=session[:uin]
         end
-
-        
         if session[:review_year]!=nil
             params[:review_year]=session[:review_year]
         end
-
-        
         if session[:first_name]!=nil
             params[:first_name]=session[:first_name]
         end
@@ -49,24 +44,27 @@ class ReviewsController < ApplicationController
         else
             temp=User.pluck(:uin)
             check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
-        
             @temp=Review.rev_func(temp).select('DISTINCT ON (reviews.user_id,reviews.year) *')
         end
+        
         if params[:first_name]!=""
             temp=User.where(:first_name =>params[:first_name]).pluck(:uin)
             check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
-        
             @temp=@temp.where(:user_id =>temp)
+            
         end
+        
+        
         if params[:last_name]!=""
              temp=User.where(:last_name =>params[:last_name]).pluck(:uin)
              check=Auth.where(:username =>temp).select('DISTINCT ON (username) *').pluck(:role)
-        
              @temp=@temp.where(:user =>temp)
         end
+        
         if params[:review_year]!=""
             @temp=@temp.where(:year =>params[:review_year])
         end
+        
         check=Auth.where(:username =>session[:user]).select('DISTINCT ON (username) *').pluck(:role)
         
         if(check[0]=='Faculty' or check[0]=='F' )
@@ -88,7 +86,6 @@ class ReviewsController < ApplicationController
             @temp=@temp.where(:user =>temp)
         end
         
-
         
         if @temp==[]
             flash[:notice] = "No record found"
@@ -103,6 +100,7 @@ class ReviewsController < ApplicationController
             session[:dyear]=@temp.pluck(:year)
             session[:page]="review"
             @tempj=""
+        
             return @temp
         end
         
