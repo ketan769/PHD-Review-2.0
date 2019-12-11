@@ -16,5 +16,3 @@ Background: students in database
      And I fill uin 329 
      And I press "submit"
      Then I should see the student 329
-     
-     
