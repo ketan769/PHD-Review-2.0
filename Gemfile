@@ -44,7 +44,7 @@ gem 'carrierwave'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'better_errors', '~> 2.4'
+  gem 'better_errors', '~> 2.8'
   gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'simplecov', :require => false 
